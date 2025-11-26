@@ -1,0 +1,49 @@
+{
+  "name": "embr-infrastructure",
+  "version": "1.0.0",
+  "description": "Complete infrastructure setup for Embr platform",
+  "private": true,
+  "scripts": {
+    "db:migrate:dev": "cd prisma && prisma migrate dev",
+    "db:migrate:deploy": "cd prisma && prisma migrate deploy",
+    "db:migrate:reset": "cd prisma && prisma migrate reset",
+    "db:migrate:status": "cd prisma && prisma migrate status",
+    "db:generate": "cd prisma && prisma generate",
+    "db:push": "cd prisma && prisma db push",
+    "db:studio": "cd prisma && prisma studio",
+    "db:seed": "ts-node scripts/seed.ts",
+    "db:validate": "cd prisma && prisma validate",
+    "db:format": "cd prisma && prisma format",
+    "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker-compose -f docker/docker-compose.yml logs -f",
+    "docker:restart": "npm run docker:down && npm run docker:up",
+    "docker:prod": "docker-compose -f docker/docker-compose.prod.yml up -d",
+    "docker:prod:down": "docker-compose -f docker/docker-compose.prod.yml down",
+    "setup": "npm install && npm run docker:up && sleep 5 && npm run db:generate && npm run db:migrate:dev && npm run db:seed",
+    "clean": "npm run docker:down && rm -rf node_modules package-lock.json",
+    "backup": "chmod +x scripts/migrate.sh && ./scripts/migrate.sh backup",
+    "migrate": "chmod +x scripts/migrate.sh && ./scripts/migrate.sh"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.0",
+    "bcrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.10.6",
+    "prisma": "^5.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "embr",
+    "infrastructure",
+    "database",
+    "migrations",
+    "docker",
+    "ci-cd"
+  ],
+  "author": "Embr Team",
+  "license": "MIT"
+}

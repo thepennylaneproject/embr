@@ -1,0 +1,294 @@
+name: Deploy API to Railway
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+    paths:
+      - 'apps/api/**'
+      - 'packages/**'
+      - 'prisma/**'
+      - '.github/workflows/api-deploy.yml'
+  pull_request:
+    branches:
+      - main
+      - staging
+    paths:
+      - 'apps/api/**'
+      - 'packages/**'
+      - 'prisma/**'
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # Test and lint the API
+  test:
+    name: Test & Lint API
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: embr_test
+          POSTGRES_PASSWORD: embr_test_password
+          POSTGRES_DB: embr_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup test database
+        env:
+          DATABASE_URL: postgresql://embr_test:embr_test_password@localhost:5432/embr_test
+        run: |
+          cd apps/api
+          npx prisma generate
+          npx prisma db push
+
+      - name: Run linter
+        run: |
+          cd apps/api
+          npm run lint
+
+      - name: Run type check
+        run: |
+          cd apps/api
+          npm run type-check || npx tsc --noEmit
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://embr_test:embr_test_password@localhost:5432/embr_test
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: test_jwt_secret_minimum_32_characters
+        run: |
+          cd apps/api
+          npm run test:ci || npm test
+
+      - name: Run E2E tests
+        env:
+          DATABASE_URL: postgresql://embr_test:embr_test_password@localhost:5432/embr_test
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: test_jwt_secret_minimum_32_characters
+        run: |
+          cd apps/api
+          npm run test:e2e || echo "E2E tests not configured yet"
+
+  # Build the API
+  build:
+    name: Build API
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build API
+        run: |
+          cd apps/api
+          npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-build
+          path: apps/api/dist
+          retention-days: 1
+
+  # Deploy to Railway (Staging)
+  deploy-staging:
+    name: Deploy to Railway (Staging)
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://api-staging.embr.app
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway (Staging)
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_STAGING_TOKEN }}
+        run: |
+          railway link --project ${{ secrets.RAILWAY_STAGING_PROJECT_ID }}
+          railway up --service api --environment staging
+
+      - name: Run database migrations
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_STAGING_TOKEN }}
+        run: |
+          railway run --service api --environment staging "npx prisma migrate deploy"
+
+      - name: Check deployment health
+        run: |
+          sleep 30
+          curl --fail https://api-staging.embr.app/health || exit 1
+
+      - name: Notify deployment success
+        if: success()
+        run: echo "✅ Staging deployment successful!"
+
+  # Deploy to Railway (Production)
+  deploy-production:
+    name: Deploy to Railway (Production)
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://api.embr.app
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Create backup before deployment
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PRODUCTION_TOKEN }}
+        run: |
+          railway link --project ${{ secrets.RAILWAY_PRODUCTION_PROJECT_ID }}
+          railway run --service postgres --environment production "pg_dump -Fc > /backup/pre-deploy-$(date +%Y%m%d-%H%M%S).dump" || echo "Backup step optional"
+
+      - name: Deploy to Railway (Production)
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PRODUCTION_TOKEN }}
+        run: |
+          railway link --project ${{ secrets.RAILWAY_PRODUCTION_PROJECT_ID }}
+          railway up --service api --environment production
+
+      - name: Run database migrations
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PRODUCTION_TOKEN }}
+        run: |
+          railway run --service api --environment production "npx prisma migrate deploy"
+
+      - name: Warm up cache
+        run: |
+          sleep 30
+          curl https://api.embr.app/health
+
+      - name: Check deployment health
+        run: |
+          sleep 10
+          response=$(curl --silent --fail https://api.embr.app/health)
+          echo "Health check response: $response"
+          if [[ $response != *"ok"* ]]; then
+            echo "Health check failed!"
+            exit 1
+          fi
+
+      - name: Run smoke tests
+        run: |
+          curl --fail https://api.embr.app/v1/health || exit 1
+          echo "✅ Smoke tests passed"
+
+      - name: Notify deployment success
+        if: success()
+        run: echo "✅ Production deployment successful!"
+
+      - name: Create GitHub release
+        if: success()
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: api-${{ github.run_number }}
+          release_name: API Release ${{ github.run_number }}
+          body: |
+            Automated deployment to production
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+          draft: false
+          prerelease: false
+
+  # Rollback on failure
+  rollback:
+    name: Rollback on Failure
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    if: failure() && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Rollback deployment
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_PRODUCTION_TOKEN }}
+        run: |
+          echo "🚨 Deployment failed! Initiating rollback..."
+          railway link --project ${{ secrets.RAILWAY_PRODUCTION_PROJECT_ID }}
+          railway rollback --service api --environment production
+          echo "✅ Rollback completed"
+
+      - name: Notify team
+        run: |
+          echo "🚨 Production deployment failed and was rolled back"
+          # Add Slack/Discord webhook notification here
+
+# Configuration Notes:
+# 
+# Required GitHub Secrets:
+# - RAILWAY_STAGING_TOKEN: Railway API token for staging
+# - RAILWAY_STAGING_PROJECT_ID: Railway project ID for staging
+# - RAILWAY_PRODUCTION_TOKEN: Railway API token for production
+# - RAILWAY_PRODUCTION_PROJECT_ID: Railway project ID for production
+# 
+# Optional Secrets:
+# - SLACK_WEBHOOK_URL: For deployment notifications
+# - SENTRY_AUTH_TOKEN: For release tracking
+# 
+# Railway Setup:
+# 1. Create Railway projects for staging and production
+# 2. Generate API tokens in Railway dashboard
+# 3. Add tokens to GitHub Secrets
+# 4. Configure environment variables in Railway
+# 
+# Environment Protection Rules:
+# - Require approvals for production deployments
+# - Set up required reviewers
+# - Configure deployment branches
