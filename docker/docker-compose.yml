@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: embr_postgres
+    restart: unless-stopped
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: embr
+      POSTGRES_PASSWORD: embr_dev_password
+      POSTGRES_DB: embr
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U embr']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - embr_network
+
+  # Redis for caching and job queues
+  redis:
+    image: redis:7-alpine
+    container_name: embr_redis
+    restart: unless-stopped
+    ports:
+      - '6380:6380'
+    command: redis-server --appendonly yes --requirepass embr_redis_password
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - embr_network
+
+  # Adminer - Database management UI
+  adminer:
+    image: adminer:latest
+    container_name: embr_adminer
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    depends_on:
+      - postgres
+    networks:
+      - embr_network
+
+  # Redis Commander - Redis management UI
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: embr_redis_commander
+    restart: unless-stopped
+    ports:
+      - '8081:8081'
+    environment:
+      - REDIS_HOSTS=local:embr_redis:6380:0:embr_redis_password
+    depends_on:
+      - redis
+    networks:
+      - embr_network
+
+  # MailHog - Email testing (for development)
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: embr_mailhog
+    restart: unless-stopped
+    ports:
+      - '1025:1025' # SMTP server
+      - '8025:8025' # Web UI
+    networks:
+      - embr_network
+
+  # LocalStack - AWS services emulation (optional, for S3 testing)
+  localstack:
+    image: localstack/localstack:latest
+    container_name: embr_localstack
+    restart: unless-stopped
+    ports:
+      - '4566:4566' # LocalStack gateway
+      - '4510-4559:4510-4559' # External services
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack_data:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - embr_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  localstack_data:
+    driver: local
+
+networks:
+  embr_network:
+    driver: bridge
+
+# Usage Instructions:
+# 
+# Start all services:
+#   docker-compose up -d
+# 
+# Stop all services:
+#   docker-compose down
+# 
+# View logs:
+#   docker-compose logs -f [service_name]
+# 
+# Rebuild services:
+#   docker-compose up -d --build
+# 
+# Access services:
+#   PostgreSQL: localhost:5433
+#   Redis: localhost:6380
+#   Adminer: http://localhost:8080
+#   Redis Commander: http://localhost:8081
+#   MailHog: http://localhost:8025
+#   LocalStack: http://localhost:4566

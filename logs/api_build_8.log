@@ -1,0 +1,814 @@
+
+> embr-infrastructure@1.0.0 build:api
+> npm --prefix apps/api run build
+
+
+> embr-api@0.1.0 build
+> nest build
+
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; applicantId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m40[0m     return await this.applicationsService.create(req.user.id, createApplicationDto);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m97[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; applicantId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m97[0m     return await this.applicationsService.accept(id, req.user.id);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m109[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; applicantId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m109[0m     return await this.applicationsService.reject(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m121[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; applicantId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m121[0m     return await this.applicationsService.withdraw(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m85[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '({ creator: { profile: { id: string; userId: string; createdAt: Date; updatedAt: Date; username: string; isVerified: boolean; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 12 more ...; postCount: number; }; } & { ...; }; } & { ...; })[]' is not assignable to type 'Gig[]'.
+  Type '{ creator: { profile: { id: string; userId: string; createdAt: Date; updatedAt: Date; username: string; isVerified: boolean; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 12 more ...; postCount: number; }; } & { ...; }; } & { ...; }' is not assignable to type 'Gig'.
+    Types of property 'budgetType' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+        Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m85[0m     return await this.gigsService.getRecommendedGigs(req.user.id, limit);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m131[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; currency: string; createdAt: Date; updatedAt: Date; status: GigStatus; description: string; deletedAt: Date; skills: string[]; title: string; expiresAt: Date; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'budgetType' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+      Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m131[0m     return await this.gigsService.update(id, req.user.id, updateGigDto);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m143[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; currency: string; createdAt: Date; updatedAt: Date; status: GigStatus; description: string; deletedAt: Date; skills: string[]; title: string; expiresAt: Date; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'budgetType' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+      Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m143[0m     return await this.gigsService.cancel(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m155[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; currency: string; createdAt: Date; updatedAt: Date; status: GigStatus; description: string; deletedAt: Date; skills: string[]; title: string; expiresAt: Date; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'budgetType' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+      Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m155[0m     return await this.gigsService.markCompleted(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/services/escrow.service.ts[0m:[93m179[0m:[93m64[0m - [91merror[0m[90m TS2345: [0mArgument of type 'GigEscrowStatus' is not assignable to parameter of type '"DISPUTED" | "FUNDED"'.
+  Type '"REFUNDED"' is not assignable to type '"DISPUTED" | "FUNDED"'. Did you mean '"FUNDED"'?
+
+[7m179[0m     if (![EscrowStatus.FUNDED, EscrowStatus.DISPUTED].includes(escrow.status)) {
+[7m   [0m [91m                                                               ~~~~~~~~~~~~~[0m
+[96msrc/modules/gigs/services/escrow.service.ts[0m:[93m277[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'GigMilestoneStatus' is not assignable to parameter of type '"PENDING" | "REJECTED"'.
+  Type '"APPROVED"' is not assignable to type '"PENDING" | "REJECTED"'.
+
+[7m277[0m     if (![MilestoneStatus.PENDING, MilestoneStatus.REJECTED].includes(milestone.status)) {
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m133[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; } | { budgetMin: string; budgetMax?: undefined; expiresAt?: undefined; createdAt?: undefined; } | { expiresAt: string; budgetMax?: undefined; budgetMin?: undefined; createdAt?: undefined; } | { ...; }' is not assignable to type 'GigOrderByWithRelationInput | GigOrderByWithRelationInput[]'.
+  Type '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; }' is not assignable to type 'GigOrderByWithRelationInput | GigOrderByWithRelationInput[]'.
+    Type '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; }' is not assignable to type 'GigOrderByWithRelationInput'.
+      Types of property 'budgetMax' are incompatible.
+        Type 'string' is not assignable to type 'SortOrder'.
+
+[7m133[0m         orderBy,
+[7m   [0m [91m        ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m20490[0m:[93m5[0m
+    [7m20490[0m     orderBy?: GigOrderByWithRelationInput | GigOrderByWithRelationInput[]
+    [7m     [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'orderBy' which is declared here on type '{ select?: GigSelect<DefaultArgs>; include?: GigInclude<DefaultArgs>; where?: GigWhereInput; orderBy?: GigOrderByWithRelationInput | GigOrderByWithRelationInput[]; cursor?: GigWhereUniqueInput; take?: number; skip?: number; distinct?: GigScalarFieldEnum | GigScalarFieldEnum[]; }'
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m144[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; currency: string; createdAt: Date; updatedAt: Date; status: GigStatus; description: string; deletedAt: Date; skills: string[]; title: string; expiresAt: Date; ... 10 more ...; creatorId: string; }[]' is not assignable to type 'Gig[]'.
+  Type '{ id: string; currency: string; createdAt: Date; updatedAt: Date; status: GigStatus; description: string; deletedAt: Date; skills: string[]; title: string; expiresAt: Date; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+    Types of property 'budgetType' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+        Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m144[0m       gigs,
+[7m   [0m [91m      ~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m238[0m:[93m3[0m
+    [7m238[0m   gigs: Gig[];
+    [7m   [0m [96m  ~~~~[0m
+    The expected type comes from property 'gigs' which is declared here on type 'PaginatedGigs'
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m204[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '({ creator: { profile: { id: string; userId: string; createdAt: Date; updatedAt: Date; username: string; isVerified: boolean; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 12 more ...; postCount: number; }; } & { ...; }; } & { ...; })[]' is not assignable to type 'Gig[]'.
+  Type '{ creator: { profile: { id: string; userId: string; createdAt: Date; updatedAt: Date; username: string; isVerified: boolean; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 12 more ...; postCount: number; }; } & { ...; }; } & { ...; }' is not assignable to type 'Gig'.
+    Types of property 'budgetType' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigBudgetType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigBudgetType'.
+        Type '"FIXED"' is not assignable to type 'GigBudgetType'.
+
+[7m204[0m       gigs,
+[7m   [0m [91m      ~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m238[0m:[93m3[0m
+    [7m238[0m   gigs: Gig[];
+    [7m   [0m [96m  ~~~~[0m
+    The expected type comes from property 'gigs' which is declared here on type 'PaginatedGigs'
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m222[0m:[93m63[0m - [91merror[0m[90m TS2345: [0mArgument of type 'GigStatus' is not assignable to parameter of type '"COMPLETED" | "IN_PROGRESS"'.
+  Type '"CANCELLED"' is not assignable to type '"COMPLETED" | "IN_PROGRESS"'.
+
+[7m222[0m     if ([GigStatus.IN_PROGRESS, GigStatus.COMPLETED].includes(gig.status)) {
+[7m   [0m [91m                                                              ~~~~~~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m62[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'displayName' does not exist in type 'UserSelect<DefaultArgs>'.
+
+[7m62[0m             displayName: true,
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m284[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'userId' does not exist in type 'PostSelect<DefaultArgs>'.
+
+[7m284[0m             userId: true,
+[7m   [0m [91m            ~~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m301[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'post' does not exist on type '{ id: string; userId: string; createdAt: Date; updatedAt: Date; status: string; completedAt: Date; deletedAt: Date; postId: string; thumbnailUrl: string; muxAssetId: string; ... 12 more ...; errorMessage: string; }'.
+
+[7m301[0m     if (media.post && media.post.visibility === 'public') {
+[7m   [0m [91m              ~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m301[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'post' does not exist on type '{ id: string; userId: string; createdAt: Date; updatedAt: Date; status: string; completedAt: Date; deletedAt: Date; postId: string; thumbnailUrl: string; muxAssetId: string; ... 12 more ...; errorMessage: string; }'.
+
+[7m301[0m     if (media.post && media.post.visibility === 'public') {
+[7m   [0m [91m                            ~~~~[0m
+[96msrc/modules/messaging/controllers/messaging.controller.ts[0m:[93m205[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'FILE' does not exist on type '{ readonly TEXT: "TEXT"; readonly IMAGE: "IMAGE"; readonly VIDEO: "VIDEO"; readonly AUDIO: "AUDIO"; readonly GIG_OFFER: "GIG_OFFER"; }'.
+
+[7m205[0m       case MessageType.FILE:
+[7m   [0m [91m                       ~~~~[0m
+[96msrc/modules/messaging/controllers/messaging.controller.ts[0m:[93m232[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'FILE' does not exist on type '{ readonly TEXT: "TEXT"; readonly IMAGE: "IMAGE"; readonly VIDEO: "VIDEO"; readonly AUDIO: "AUDIO"; readonly GIG_OFFER: "GIG_OFFER"; }'.
+
+[7m232[0m       case MessageType.FILE:
+[7m   [0m [91m                       ~~~~[0m
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m99[0m:[93m9[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'note' does not exist in type '(Without<PayoutCreateInput, PayoutUncheckedCreateInput> & PayoutUncheckedCreateInput) | (Without<...> & PayoutCreateInput)'. Did you mean to write 'notes'?
+
+[7m99[0m         note,
+[7m  [0m [91m        ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19327[0m:[93m5[0m
+    [7m19327[0m     data: XOR<PayoutCreateInput, PayoutUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutCreateInput, PayoutUncheckedCreateInput> & PayoutUncheckedCreateInput) | (Without<...> & PayoutCreateInput); }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m178[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'failureReason' does not exist in type '(Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput)'.
+
+[7m178[0m             failureReason: error.message,
+[7m   [0m [91m            ~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19375[0m:[93m5[0m
+    [7m19375[0m     data: XOR<PayoutUpdateInput, PayoutUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput); where: PayoutWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m189[0m:[93m11[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'rejectedBy' does not exist in type '(Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput)'. Did you mean to write 'rejectedAt'?
+
+[7m189[0m           rejectedBy: adminId,
+[7m   [0m [91m          ~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19375[0m:[93m5[0m
+    [7m19375[0m     data: XOR<PayoutUpdateInput, PayoutUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput); where: PayoutWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m272[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'processedAt' does not exist in type '(Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput)'.
+
+[7m272[0m           processedAt: new Date(),
+[7m   [0m [91m          ~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19375[0m:[93m5[0m
+    [7m19375[0m     data: XOR<PayoutUpdateInput, PayoutUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput); where: PayoutWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m310[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'failureReason' does not exist in type '(Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput)'.
+
+[7m310[0m           failureReason: error.message,
+[7m   [0m [91m          ~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19375[0m:[93m5[0m
+    [7m19375[0m     data: XOR<PayoutUpdateInput, PayoutUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput); where: PayoutWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m333[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'completedAt' does not exist in type '(Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput)'.
+
+[7m333[0m         completedAt: new Date(),
+[7m   [0m [91m        ~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19375[0m:[93m5[0m
+    [7m19375[0m     data: XOR<PayoutUpdateInput, PayoutUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; data: (Without<PayoutUpdateInput, PayoutUncheckedUpdateInput> & PayoutUncheckedUpdateInput) | (Without<...> & PayoutUpdateInput); where: PayoutWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m457[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'completedAt' does not exist in type 'PayoutOrderByWithRelationInput | PayoutOrderByWithRelationInput[]'.
+
+[7m457[0m       orderBy: { completedAt: 'desc' },
+[7m   [0m [91m                 ~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19194[0m:[93m5[0m
+    [7m19194[0m     orderBy?: PayoutOrderByWithRelationInput | PayoutOrderByWithRelationInput[]
+    [7m     [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'orderBy' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; where?: PayoutWhereInput; ... 4 more ...; distinct?: PayoutScalarFieldEnum | PayoutScalarFieldEnum[]; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m458[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'completedAt' does not exist in type 'PayoutSelect<DefaultArgs>'.
+
+[7m458[0m       select: { completedAt: true },
+[7m   [0m [91m                ~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m19180[0m:[93m5[0m
+    [7m19180[0m     select?: PayoutSelect<ExtArgs> | null
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'select' which is declared here on type '{ select?: PayoutSelect<DefaultArgs>; include?: PayoutInclude<DefaultArgs>; where?: PayoutWhereInput; ... 4 more ...; distinct?: PayoutScalarFieldEnum | PayoutScalarFieldEnum[]; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m465[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type '{ id: string; userId: string; currency: string; createdAt: Date; amount: number; fee: number; netAmount: number; walletId: string; status: PayoutStatus; stripeTransferId: string; ... 9 more ...; transactionId: string; }'.
+
+[7m465[0m       lastPayoutDate: lastPayout?.completedAt,
+[7m   [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m36[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'payment' does not exist in type 'UserInclude<DefaultArgs>'.
+
+[7m36[0m       include: { payment: true, profile: true },
+[7m  [0m [91m                 ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m5480[0m:[93m5[0m
+    [7m5480[0m     include?: UserInclude<ExtArgs> | null
+    [7m    [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'include' which is declared here on type '{ select?: UserSelect<DefaultArgs>; include?: UserInclude<DefaultArgs>; where: UserWhereUniqueInput; }'
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m44[0m:[93m14[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m44[0m     if (user.payment?.stripeConnectAccountId) {
+[7m  [0m [91m             ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m46[0m:[93m14[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m46[0m         user.payment.stripeConnectAccountId,
+[7m  [0m [91m             ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m52[0m:[93m16[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m52[0m           user.payment.stripeConnectAccountId,
+[7m  [0m [91m               ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m58[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m58[0m           accountId: user.payment.stripeConnectAccountId,
+[7m  [0m [91m                          ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m64[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m64[0m         accountId: user.payment.stripeConnectAccountId,
+[7m  [0m [91m                        ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m82[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m82[0m           username: user.profile?.username || '',
+[7m  [0m [91m                         ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m87[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m87[0m       await this.prisma.payment.upsert({
+[7m  [0m [91m                        ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m147[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m147[0m     const payment = await this.prisma.payment.findUnique({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m168[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m168[0m     const payment = await this.prisma.payment.findUnique({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m187[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m187[0m     await this.prisma.payment.update({
+[7m   [0m [91m                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m219[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m219[0m     const payment = await this.prisma.payment.findUnique({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m276[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m276[0m     const payment = await this.prisma.payment.findUnique({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m316[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m316[0m     const payment = await this.prisma.payment.findUnique({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m327[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m327[0m       await this.prisma.payment.update({
+[7m   [0m [91m                        ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m352[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m352[0m     const payment = await this.prisma.payment.findFirst({
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/stripe-connect.service.ts[0m:[93m363[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'payment' does not exist on type 'PrismaService'.
+
+[7m363[0m     await this.prisma.payment.update({
+[7m   [0m [91m                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m87[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m87[0m             profile: {
+[7m  [0m [91m            ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m99[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m99[0m             profile: {
+[7m  [0m [91m            ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m288[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m288[0m             profile: { select: { username: true, displayName: true } },
+[7m   [0m [91m            ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m294[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m294[0m             profile: { select: { username: true, displayName: true } },
+[7m   [0m [91m            ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m335[0m:[93m15[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m335[0m               profile: {
+[7m   [0m [91m              ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m347[0m:[93m15[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'profile' does not exist in type 'WalletSelect<DefaultArgs>'.
+
+[7m347[0m               profile: {
+[7m   [0m [91m              ~~~~~~~[0m
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m496[0m:[93m37[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'refundReason' does not exist in type '(Without<TipUpdateInput, TipUncheckedUpdateInput> & TipUncheckedUpdateInput) | (Without<TipUncheckedUpdateInput, TipUpdateInput> & TipUpdateInput)'.
+
+[7m496[0m         data: { status: 'REFUNDED', refundReason: reason },
+[7m   [0m [91m                                    ~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m18178[0m:[93m5[0m
+    [7m18178[0m     data: XOR<TipUpdateInput, TipUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: TipSelect<DefaultArgs>; include?: TipInclude<DefaultArgs>; data: (Without<TipUpdateInput, TipUncheckedUpdateInput> & TipUncheckedUpdateInput) | (Without<...> & TipUpdateInput); where: TipWhereUniqueInput; }'
+[96msrc/modules/monetization/services/tip.service.ts[0m:[93m514[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; type: any; amount: number; description: string; referenceId: string; referenceType: string; }' is not assignable to type '(Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput)'.
+  Type '{ userId: string; type: any; amount: number; description: string; referenceId: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput> & TransactionCreateInput'.
+    Type '{ userId: string; type: any; amount: number; description: string; referenceId: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput>'.
+      Types of property 'userId' are incompatible.
+        Type 'string' is not assignable to type 'never'.
+
+[7m514[0m         data: {
+[7m   [0m [91m        ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m16996[0m:[93m5[0m
+    [7m16996[0m     data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: TransactionSelect<DefaultArgs>; include?: TransactionInclude<DefaultArgs>; data: (Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput); }'
+[96msrc/modules/monetization/services/transaction.service.ts[0m:[93m31[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/modules/monetization/dto/wallet.dto").TransactionType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.TransactionType'.
+
+[7m31[0m           type,
+[7m  [0m [91m          ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m44959[0m:[93m5[0m
+    [7m44959[0m     type: $Enums.TransactionType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type '(Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput)'
+[96msrc/modules/monetization/services/transaction.service.ts[0m:[93m96[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'PLATFORM_FEE' does not exist on type 'typeof TransactionType'.
+
+[7m96[0m         type: TransactionType.PLATFORM_FEE as any,
+[7m  [0m [91m                              ~~~~~~~~~~~~[0m
+[96msrc/modules/monetization/services/wallet.service.ts[0m:[93m134[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type '(Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput)'.
+  Type '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput> & TransactionCreateInput'.
+    Type '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput>'.
+      Types of property 'userId' are incompatible.
+        Type 'string' is not assignable to type 'never'.
+
+[7m134[0m       data: {
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m16996[0m:[93m5[0m
+    [7m16996[0m     data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: TransactionSelect<DefaultArgs>; include?: TransactionInclude<DefaultArgs>; data: (Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput); }'
+[96msrc/modules/monetization/services/wallet.service.ts[0m:[93m175[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type '(Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput)'.
+  Type '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput> & TransactionCreateInput'.
+    Type '{ userId: string; type: any; amount: number; description: string; referenceType: string; }' is not assignable to type 'Without<TransactionUncheckedCreateInput, TransactionCreateInput>'.
+      Types of property 'userId' are incompatible.
+        Type 'string' is not assignable to type 'never'.
+
+[7m175[0m       data: {
+[7m   [0m [91m      ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m16996[0m:[93m5[0m
+    [7m16996[0m     data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: TransactionSelect<DefaultArgs>; include?: TransactionInclude<DefaultArgs>; data: (Without<TransactionCreateInput, TransactionUncheckedCreateInput> & TransactionUncheckedCreateInput) | (Without<...> & TransactionCreateInput); }'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m67[0m:[93m9[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.PENDING' is not assignable to type 'AppealStatus'. Did you mean '"PENDING"'?
+
+[7m67[0m         status: AppealStatus.PENDING,
+[7m  [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46826[0m:[93m5[0m
+    [7m46826[0m     status?: $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<AppealCreateInput, AppealUncheckedCreateInput> & AppealUncheckedCreateInput) | (Without<...> & AppealCreateInput)'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m181[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m181[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m237[0m:[93m7[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.APPROVED' have no overlap.
+
+[7m237[0m       appeal.status === AppealStatus.APPROVED ||
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m238[0m:[93m7[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.DENIED' have no overlap.
+
+[7m238[0m       appeal.status === AppealStatus.DENIED
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m247[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'AppealStatus' is not assignable to type 'AppealStatus | EnumAppealStatusFieldUpdateOperationsInput'.
+
+[7m247[0m         status: dto.status,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46850[0m:[93m5[0m
+    [7m46850[0m     status?: EnumAppealStatusFieldUpdateOperationsInput | $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<AppealUpdateInput, AppealUncheckedUpdateInput> & AppealUncheckedUpdateInput) | (Without<...> & AppealUpdateInput)'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m306[0m:[93m43[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.PENDING' have no overlap.
+
+[7m306[0m     const pending = appeals.filter((a) => a.status === AppealStatus.PENDING).length;
+[7m   [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m308[0m:[93m14[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.UNDER_REVIEW' have no overlap.
+
+[7m308[0m       (a) => a.status === AppealStatus.UNDER_REVIEW,
+[7m   [0m [91m             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m310[0m:[93m44[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.APPROVED' have no overlap.
+
+[7m310[0m     const approved = appeals.filter((a) => a.status === AppealStatus.APPROVED).length;
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m311[0m:[93m42[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'AppealStatus' and 'AppealStatus.DENIED' have no overlap.
+
+[7m311[0m     const denied = appeals.filter((a) => a.status === AppealStatus.DENIED).length;
+[7m   [0m [91m                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m349[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.PENDING' is not assignable to type 'AppealStatus | EnumAppealStatusFilter<"Appeal">'. Did you mean '"PENDING"'?
+
+[7m349[0m           status: AppealStatus.PENDING,
+[7m   [0m [91m          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43332[0m:[93m5[0m
+    [7m43332[0m     status?: EnumAppealStatusFilter<"Appeal"> | $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'AppealWhereInput'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m355[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.UNDER_REVIEW' is not assignable to type 'AppealStatus | EnumAppealStatusFilter<"Appeal">'. Did you mean '"UNDER_REVIEW"'?
+
+[7m355[0m           status: AppealStatus.UNDER_REVIEW,
+[7m   [0m [91m          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43332[0m:[93m5[0m
+    [7m43332[0m     status?: EnumAppealStatusFilter<"Appeal"> | $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'AppealWhereInput'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m361[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.APPROVED' is not assignable to type 'AppealStatus | EnumAppealStatusFilter<"Appeal">'. Did you mean '"APPROVED"'?
+
+[7m361[0m           status: AppealStatus.APPROVED,
+[7m   [0m [91m          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43332[0m:[93m5[0m
+    [7m43332[0m     status?: EnumAppealStatusFilter<"Appeal"> | $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'AppealWhereInput'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m367[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.DENIED' is not assignable to type 'AppealStatus | EnumAppealStatusFilter<"Appeal">'. Did you mean '"DENIED"'?
+
+[7m367[0m           status: AppealStatus.DENIED,
+[7m   [0m [91m          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43332[0m:[93m5[0m
+    [7m43332[0m     status?: EnumAppealStatusFilter<"Appeal"> | $Enums.AppealStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'AppealWhereInput'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m398[0m:[93m22[0m - [91merror[0m[90m TS2820: [0mType '"admin"' is not assignable to type 'UserRole'. Did you mean '"ADMIN"'?
+
+[7m398[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                     ~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m398[0m:[93m31[0m - [91merror[0m[90m TS2820: [0mType '"moderator"' is not assignable to type 'UserRole'. Did you mean '"MODERATOR"'?
+
+[7m398[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                              ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m424[0m:[93m24[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.APPROVED' is not assignable to type 'AppealStatus'. Did you mean '"APPROVED"'?
+
+[7m424[0m         status: { in: [AppealStatus.APPROVED, AppealStatus.DENIED] },
+[7m   [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m424[0m:[93m47[0m - [91merror[0m[90m TS2820: [0mType 'AppealStatus.DENIED' is not assignable to type 'AppealStatus'. Did you mean '"DENIED"'?
+
+[7m424[0m         status: { in: [AppealStatus.APPROVED, AppealStatus.DENIED] },
+[7m   [0m [91m                                              ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m53[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m53[0m     const rules = await this.prisma.contentRule.findMany({
+[7m  [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m130[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m130[0m     const rule = await this.prisma.contentRule.create({
+[7m   [0m [91m                                   ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m150[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m150[0m     const rules = await this.prisma.contentRule.findMany({
+[7m   [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m162[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m162[0m     const rule = await this.prisma.contentRule.update({
+[7m   [0m [91m                                   ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m174[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m174[0m     await this.prisma.contentRule.delete({
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m189[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m189[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m192[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m192[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m198[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m198[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m204[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m204[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m210[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m210[0m       this.prisma.filterLog.groupBy({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m233[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m233[0m     const recentContent = await this.prisma.filterLog.findMany({
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m333[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m333[0m     await this.prisma.filterLog.create({
+[7m   [0m [91m                      ~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m40[0m:[93m24[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.BAN' is not assignable to type 'ActionType'. Did you mean '"BAN"'?
+
+[7m40[0m           type: { in: [ActionType.BAN, ActionType.SUSPENSION] },
+[7m  [0m [91m                       ~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m40[0m:[93m40[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.SUSPENSION' is not assignable to type 'ActionType'. Did you mean '"SUSPENSION"'?
+
+[7m40[0m           type: { in: [ActionType.BAN, ActionType.SUSPENSION] },
+[7m  [0m [91m                                       ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m50[0m:[93m30[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ActionType' and 'ActionType.BAN' have no overlap.
+
+[7m50[0m           `User is already ${existingAction.type === ActionType.BAN ? 'banned' : 'suspended'}`,
+[7m  [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m67[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/modules/safety/dto/safety.dto").ActionType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.ActionType'.
+
+[7m67[0m         type: dto.type,
+[7m  [0m [91m        ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46728[0m:[93m5[0m
+    [7m46728[0m     type: $Enums.ActionType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type '(Without<ModerationActionCreateInput, ModerationActionUncheckedCreateInput> & ModerationActionUncheckedCreateInput) | (Without<...> & ModerationActionCreateInput)'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m192[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m192[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m291[0m:[93m44[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ActionType' and 'ActionType.WARNING' have no overlap.
+
+[7m291[0m     const warnings = actions.filter((a) => a.type === ActionType.WARNING).length;
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m292[0m:[93m47[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ActionType' and 'ActionType.SUSPENSION' have no overlap.
+
+[7m292[0m     const suspensions = actions.filter((a) => a.type === ActionType.SUSPENSION).length;
+[7m   [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m293[0m:[93m40[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ActionType' and 'ActionType.BAN' have no overlap.
+
+[7m293[0m     const bans = actions.filter((a) => a.type === ActionType.BAN).length;
+[7m   [0m [91m                                       ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m294[0m:[93m51[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ActionType' and 'ActionType.CONTENT_REMOVAL' have no overlap.
+
+[7m294[0m     const contentRemovals = actions.filter((a) => a.type === ActionType.CONTENT_REMOVAL).length;
+[7m   [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m315[0m:[93m22[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.BAN' is not assignable to type 'ActionType'. Did you mean '"BAN"'?
+
+[7m315[0m         type: { in: [ActionType.BAN, ActionType.SUSPENSION] },
+[7m   [0m [91m                     ~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m315[0m:[93m38[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.SUSPENSION' is not assignable to type 'ActionType'. Did you mean '"SUSPENSION"'?
+
+[7m315[0m         type: { in: [ActionType.BAN, ActionType.SUSPENSION] },
+[7m   [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m353[0m:[93m22[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.SUSPENSION' is not assignable to type 'ActionType'. Did you mean '"SUSPENSION"'?
+
+[7m353[0m         type: { in: [ActionType.SUSPENSION] },
+[7m   [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m389[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.WARNING' is not assignable to type 'ActionType | EnumActionTypeFilter<"ModerationAction">'. Did you mean '"WARNING"'?
+
+[7m389[0m           type: ActionType.WARNING,
+[7m   [0m [91m          ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43238[0m:[93m5[0m
+    [7m43238[0m     type?: EnumActionTypeFilter<"ModerationAction"> | $Enums.ActionType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'ModerationActionWhereInput'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m395[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.SUSPENSION' is not assignable to type 'ActionType | EnumActionTypeFilter<"ModerationAction">'. Did you mean '"SUSPENSION"'?
+
+[7m395[0m           type: ActionType.SUSPENSION,
+[7m   [0m [91m          ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43238[0m:[93m5[0m
+    [7m43238[0m     type?: EnumActionTypeFilter<"ModerationAction"> | $Enums.ActionType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'ModerationActionWhereInput'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m401[0m:[93m11[0m - [91merror[0m[90m TS2820: [0mType 'ActionType.BAN' is not assignable to type 'ActionType | EnumActionTypeFilter<"ModerationAction">'. Did you mean '"BAN"'?
+
+[7m401[0m           type: ActionType.BAN,
+[7m   [0m [91m          ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43238[0m:[93m5[0m
+    [7m43238[0m     type?: EnumActionTypeFilter<"ModerationAction"> | $Enums.ActionType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type 'ModerationActionWhereInput'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m433[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'suspended' does not exist in type '(Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput)'.
+
+[7m433[0m             suspended: true,
+[7m   [0m [91m            ~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m5703[0m:[93m5[0m
+    [7m5703[0m     data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: UserSelect<DefaultArgs>; include?: UserInclude<DefaultArgs>; data: (Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput); where: UserWhereUniqueInput; }'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m456[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'suspended' does not exist in type '(Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput)'.
+
+[7m456[0m             suspended: false,
+[7m   [0m [91m            ~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m5703[0m:[93m5[0m
+    [7m5703[0m     data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: UserSelect<DefaultArgs>; include?: UserInclude<DefaultArgs>; data: (Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput); where: UserWhereUniqueInput; }'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m469[0m:[93m11[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'deleted' does not exist in type '(Without<PostUpdateInput, PostUncheckedUpdateInput> & PostUncheckedUpdateInput) | (Without<...> & PostUpdateInput)'. Did you mean to write 'deletedAt'?
+
+[7m469[0m           deleted: true,
+[7m   [0m [91m          ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m12551[0m:[93m5[0m
+    [7m12551[0m     data: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PostSelect<DefaultArgs>; include?: PostInclude<DefaultArgs>; data: (Without<PostUpdateInput, PostUncheckedUpdateInput> & PostUncheckedUpdateInput) | (Without<...> & PostUpdateInput); where: PostWhereUniqueInput; }'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m45[0m:[93m16[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.PENDING' is not assignable to type 'ReportStatus'. Did you mean '"PENDING"'?
+
+[7m45[0m           in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW],
+[7m  [0m [91m               ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m45[0m:[93m38[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.UNDER_REVIEW' is not assignable to type 'ReportStatus'. Did you mean '"UNDER_REVIEW"'?
+
+[7m45[0m           in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW],
+[7m  [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m58[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/modules/safety/dto/safety.dto").ReportReason' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.ReportReason'.
+
+[7m58[0m         reason: dto.reason,
+[7m  [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46629[0m:[93m5[0m
+    [7m46629[0m     reason: $Enums.ReportReason
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'reason' which is declared here on type '(Without<ReportCreateInput, ReportUncheckedCreateInput> & ReportUncheckedCreateInput) | (Without<...> & ReportCreateInput)'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m60[0m:[93m9[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.PENDING' is not assignable to type 'ReportStatus'. Did you mean '"PENDING"'?
+
+[7m60[0m         status: ReportStatus.PENDING,
+[7m  [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46631[0m:[93m5[0m
+    [7m46631[0m     status?: $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<ReportCreateInput, ReportUncheckedCreateInput> & ReportUncheckedCreateInput) | (Without<...> & ReportCreateInput)'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m90[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m90[0m             mediaUrls: true,
+[7m  [0m [91m            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m161[0m:[93m15[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m161[0m               mediaUrls: true,
+[7m   [0m [91m              ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m211[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m211[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m221[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m221[0m             mediaUrls: true,
+[7m   [0m [91m            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m275[0m:[93m9[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ReportStatus' and 'ReportStatus.ACTION_TAKEN' have no overlap.
+
+[7m275[0m     if (report.status === ReportStatus.ACTION_TAKEN ||
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m276[0m:[93m9[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'ReportStatus' and 'ReportStatus.DISMISSED' have no overlap.
+
+[7m276[0m         report.status === ReportStatus.DISMISSED) {
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m283[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'ReportStatus' is not assignable to type 'ReportStatus | EnumReportStatusFieldUpdateOperationsInput'.
+
+[7m283[0m         status: dto.status,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46661[0m:[93m5[0m
+    [7m46661[0m     status?: EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<ReportUpdateInput, ReportUncheckedUpdateInput> & ReportUncheckedUpdateInput) | (Without<...> & ReportUpdateInput)'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m325[0m:[93m16[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.PENDING' is not assignable to type 'ReportStatus'. Did you mean '"PENDING"'?
+
+[7m325[0m           in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW],
+[7m   [0m [91m               ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m325[0m:[93m38[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.UNDER_REVIEW' is not assignable to type 'ReportStatus'. Did you mean '"UNDER_REVIEW"'?
+
+[7m325[0m           in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW],
+[7m   [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m329[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'ReportStatus' is not assignable to type 'ReportStatus | EnumReportStatusFieldUpdateOperationsInput'.
+
+[7m329[0m         status: dto.status,
+[7m   [0m [91m        ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46702[0m:[93m5[0m
+    [7m46702[0m     status?: EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<ReportUpdateManyMutationInput, ReportUncheckedUpdateManyInput> & ReportUncheckedUpdateManyInput) | (Without<...> & ReportUpdateManyMutationInput)'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m351[0m:[93m43[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.PENDING' is not assignable to type 'EnumReportStatusFilter<"Report"> | ReportStatus'. Did you mean '"PENDING"'?
+
+[7m351[0m       this.prisma.report.count({ where: { status: ReportStatus.PENDING } }),
+[7m   [0m [91m                                          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43143[0m:[93m5[0m
+    [7m43143[0m     status?: EnumReportStatusFilter<"Report"> | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'ReportWhereInput'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m352[0m:[93m43[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.UNDER_REVIEW' is not assignable to type 'EnumReportStatusFilter<"Report"> | ReportStatus'. Did you mean '"UNDER_REVIEW"'?
+
+[7m352[0m       this.prisma.report.count({ where: { status: ReportStatus.UNDER_REVIEW } }),
+[7m   [0m [91m                                          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43143[0m:[93m5[0m
+    [7m43143[0m     status?: EnumReportStatusFilter<"Report"> | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'ReportWhereInput'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m353[0m:[93m43[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.ACTION_TAKEN' is not assignable to type 'EnumReportStatusFilter<"Report"> | ReportStatus'. Did you mean '"ACTION_TAKEN"'?
+
+[7m353[0m       this.prisma.report.count({ where: { status: ReportStatus.ACTION_TAKEN } }),
+[7m   [0m [91m                                          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43143[0m:[93m5[0m
+    [7m43143[0m     status?: EnumReportStatusFilter<"Report"> | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'ReportWhereInput'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m354[0m:[93m43[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.DISMISSED' is not assignable to type 'EnumReportStatusFilter<"Report"> | ReportStatus'. Did you mean '"DISMISSED"'?
+
+[7m354[0m       this.prisma.report.count({ where: { status: ReportStatus.DISMISSED } }),
+[7m   [0m [91m                                          ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m43143[0m:[93m5[0m
+    [7m43143[0m     status?: EnumReportStatusFilter<"Report"> | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type 'ReportWhereInput'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m436[0m:[93m17[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.UNDER_REVIEW' is not assignable to type 'ReportStatus | EnumReportStatusFieldUpdateOperationsInput'. Did you mean '"UNDER_REVIEW"'?
+
+[7m436[0m         data: { status: ReportStatus.UNDER_REVIEW },
+[7m   [0m [91m                ~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m46702[0m:[93m5[0m
+    [7m46702[0m     status?: EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+    [7m     [0m [96m    ~~~~~~[0m
+    The expected type comes from property 'status' which is declared here on type '(Without<ReportUpdateManyMutationInput, ReportUncheckedUpdateManyInput> & ReportUncheckedUpdateManyInput) | (Without<...> & ReportUpdateManyMutationInput)'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m448[0m:[93m22[0m - [91merror[0m[90m TS2820: [0mType '"admin"' is not assignable to type 'UserRole'. Did you mean '"ADMIN"'?
+
+[7m448[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                     ~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m448[0m:[93m31[0m - [91merror[0m[90m TS2820: [0mType '"moderator"' is not assignable to type 'UserRole'. Did you mean '"MODERATOR"'?
+
+[7m448[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                              ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m472[0m:[93m24[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.ACTION_TAKEN' is not assignable to type 'ReportStatus'. Did you mean '"ACTION_TAKEN"'?
+
+[7m472[0m         status: { in: [ReportStatus.ACTION_TAKEN, ReportStatus.DISMISSED] },
+[7m   [0m [91m                       ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m472[0m:[93m51[0m - [91merror[0m[90m TS2820: [0mType 'ReportStatus.DISMISSED' is not assignable to type 'ReportStatus'. Did you mean '"DISMISSED"'?
+
+[7m472[0m         status: { in: [ReportStatus.ACTION_TAKEN, ReportStatus.DISMISSED] },
+[7m   [0m [91m                                                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m413[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'viewsCount' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'viewCount'?
+
+[7m413[0m             viewsCount: true,
+[7m   [0m [91m            ~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m425[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'posts' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m425[0m       const totalEngagement = user.posts.reduce((sum, post) => {
+[7m   [0m [91m                                   ~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m430[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m430[0m       const score = totalEngagement + user._count.followers * 0.5;
+[7m   [0m [91m                                           ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m440[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m440[0m       profile: user.profile,
+[7m   [0m [91m                    ~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m443[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m443[0m         followers: user._count.followers,
+[7m   [0m [91m                        ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m524[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'viewsCount' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'viewCount'?
+
+[7m524[0m             viewsCount: true,
+[7m   [0m [91m            ~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m538[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'posts' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m538[0m       const engagement = creator.posts.reduce((sum, post) => {
+[7m   [0m [91m                                 ~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m544[0m:[93m60[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m544[0m       const engagementRate = engagement / Math.max(creator._count.followers, 100);
+[7m   [0m [91m                                                           ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m557[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m557[0m         profile: creator.profile,
+[7m   [0m [91m                         ~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m559[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m559[0m           followers: creator._count.followers,
+[7m   [0m [91m                             ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m560[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ id: string; createdAt: Date; updatedAt: Date; email: string; username: string; passwordHash: string; fullName: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; deletedAt: Date; }'.
+
+[7m560[0m           posts: creator._count.posts,
+[7m   [0m [91m                         ~~~~~~[0m
+
+Found 139 error(s).
+

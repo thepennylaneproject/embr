@@ -1,0 +1,952 @@
+
+> embr-infrastructure@1.0.0 build:api
+> npm --prefix apps/api run build
+
+
+> embr-api@0.1.0 build
+> nest build
+
+[96msrc/modules/content/services/comments.service.ts[0m:[93m289[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'userId_commentId' does not exist in type 'LikeWhereUniqueInput'.
+
+[7m289[0m         userId_commentId: {
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m13964[0m:[93m5[0m
+    [7m13964[0m     where: LikeWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: LikeSelect<DefaultArgs>; include?: LikeInclude<DefaultArgs>; where: LikeWhereUniqueInput; }'
+[96msrc/modules/content/services/comments.service.ts[0m:[93m304[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'commentId' does not exist in type '(Without<LikeCreateInput, LikeUncheckedCreateInput> & LikeUncheckedCreateInput) | (Without<...> & LikeCreateInput)'.
+
+[7m304[0m         commentId,
+[7m   [0m [91m        ~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m14139[0m:[93m5[0m
+    [7m14139[0m     data: XOR<LikeCreateInput, LikeUncheckedCreateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: LikeSelect<DefaultArgs>; include?: LikeInclude<DefaultArgs>; data: (Without<LikeCreateInput, LikeUncheckedCreateInput> & LikeUncheckedCreateInput) | (Without<...> & LikeCreateInput); }'
+[96msrc/modules/content/services/comments.service.ts[0m:[93m336[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'userId_commentId' does not exist in type 'LikeWhereUniqueInput'.
+
+[7m336[0m         userId_commentId: {
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m13964[0m:[93m5[0m
+    [7m13964[0m     where: LikeWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: LikeSelect<DefaultArgs>; include?: LikeInclude<DefaultArgs>; where: LikeWhereUniqueInput; }'
+[96msrc/modules/content/services/comments.service.ts[0m:[93m364[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'userId_commentId' does not exist in type 'LikeWhereUniqueInput'.
+
+[7m364[0m             userId_commentId: {
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m13964[0m:[93m5[0m
+    [7m13964[0m     where: LikeWhereUniqueInput
+    [7m     [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type '{ select?: LikeSelect<DefaultArgs>; include?: LikeInclude<DefaultArgs>; where: LikeWhereUniqueInput; }'
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; applicantId: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m40[0m     return await this.applicationsService.create(req.user.id, createApplicationDto);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m97[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; applicantId: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m97[0m     return await this.applicationsService.accept(id, req.user.id);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m109[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; applicantId: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m109[0m     return await this.applicationsService.reject(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/applications.controller.ts[0m:[93m121[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; status: GigApplicationStatus; gigId: string; coverLetter: string; proposedBudget: number; proposedTimeline: number; portfolioLinks: string[]; relevantExperience: string; applicantId: string; milestoneProposals: JsonValue; }' is not assignable to type 'Application'.
+  Types of property 'milestoneProposals' are incompatible.
+    Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+      Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m121[0m     return await this.applicationsService.withdraw(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m38[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ gig: { id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }; application: { ...; }; payer: { ...; }; payee: { ...; }; } & { ...; }' is not assignable to type 'Escrow'.
+  Types of property 'status' are incompatible.
+    Type 'GigEscrowStatus' is not assignable to type 'EscrowStatus'.
+      Type '"REFUNDED"' is not assignable to type 'EscrowStatus'. Did you mean 'EscrowStatus.FUNDED'?
+
+[7m38[0m     return await this.escrowService.findByApplication(applicationId);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m47[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ gig: { id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }; application: { ...; }; payer: { ...; }; payee: { ...; }; } & { ...; }' is not assignable to type 'Escrow'.
+  Types of property 'status' are incompatible.
+    Type 'GigEscrowStatus' is not assignable to type 'EscrowStatus'.
+      Type '"REFUNDED"' is not assignable to type 'EscrowStatus'. Did you mean 'EscrowStatus.FUNDED'?
+
+[7m47[0m     return await this.escrowService.findOne(id);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m60[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; currency: string; status: GigEscrowStatus; amount: number; stripePaymentIntentId: string; gigId: string; applicationId: string; ... 5 more ...; refundedAt: Date; }' is not assignable to type 'Escrow'.
+  Types of property 'status' are incompatible.
+    Type 'GigEscrowStatus' is not assignable to type 'EscrowStatus'.
+      Type '"REFUNDED"' is not assignable to type 'EscrowStatus'. Did you mean 'EscrowStatus.FUNDED'?
+
+[7m60[0m     return await this.escrowService.fund(id, req.user.id, fundEscrowDto);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m100[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; description: string; title: string; status: GigMilestoneStatus; amount: number; approvedAt: Date; rejectedAt: Date; ... 5 more ...; submittedAt: Date; }[]' is not assignable to type 'GigMilestone[]'.
+  Type '{ id: string; createdAt: Date; updatedAt: Date; description: string; title: string; status: GigMilestoneStatus; amount: number; approvedAt: Date; rejectedAt: Date; ... 5 more ...; submittedAt: Date; }' is not assignable to type 'GigMilestone'.
+    Types of property 'status' are incompatible.
+      Type 'GigMilestoneStatus' is not assignable to type 'MilestoneStatus'.
+        Type '"PENDING"' is not assignable to type 'MilestoneStatus'.
+
+[7m100[0m     return await this.escrowService.getMilestones(applicationId);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m112[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; description: string; title: string; status: GigMilestoneStatus; amount: number; approvedAt: Date; rejectedAt: Date; ... 5 more ...; submittedAt: Date; }' is not assignable to type 'GigMilestone'.
+  Types of property 'status' are incompatible.
+    Type 'GigMilestoneStatus' is not assignable to type 'MilestoneStatus'.
+      Type '"PENDING"' is not assignable to type 'MilestoneStatus'.
+
+[7m112[0m     return await this.escrowService.submitMilestone(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m125[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; description: string; title: string; status: GigMilestoneStatus; amount: number; approvedAt: Date; rejectedAt: Date; ... 5 more ...; submittedAt: Date; }' is not assignable to type 'GigMilestone'.
+  Types of property 'status' are incompatible.
+    Type 'GigMilestoneStatus' is not assignable to type 'MilestoneStatus'.
+      Type '"PENDING"' is not assignable to type 'MilestoneStatus'.
+
+[7m125[0m     return await this.escrowService.approveMilestone(id, req.user.id, feedback);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/escrow.controller.ts[0m:[93m138[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; createdAt: Date; updatedAt: Date; description: string; title: string; status: GigMilestoneStatus; amount: number; approvedAt: Date; rejectedAt: Date; ... 5 more ...; submittedAt: Date; }' is not assignable to type 'GigMilestone'.
+  Types of property 'status' are incompatible.
+    Type 'GigMilestoneStatus' is not assignable to type 'MilestoneStatus'.
+      Type '"PENDING"' is not assignable to type 'MilestoneStatus'.
+
+[7m138[0m     return await this.escrowService.rejectMilestone(id, req.user.id, feedback);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m39[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'category' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+      Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m39[0m     return await this.gigsService.create(req.user.id, createGigDto);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m51[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'category' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+      Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m51[0m     return await this.gigsService.publish(id, req.user.id);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m85[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '({ creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; location: string; ... 13 more ...; postCount: number; }; } & { ...; }; } & { ...; })[]' is not assignable to type 'Gig[]'.
+  Type '{ creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; location: string; ... 13 more ...; postCount: number; }; } & { ...; }; } & { ...; }' is not assignable to type 'Gig'.
+    Types of property 'category' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+        Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m85[0m     return await this.gigsService.getRecommendedGigs(req.user.id, limit);
+[7m  [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m131[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'category' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+      Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m131[0m     return await this.gigsService.update(id, req.user.id, updateGigDto);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m143[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'category' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+      Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m143[0m     return await this.gigsService.cancel(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/controllers/gigs.controller.ts[0m:[93m155[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+  Types of property 'category' are incompatible.
+    Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+      Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m155[0m     return await this.gigsService.markCompleted(id, req.user.id);
+[7m   [0m [91m    ~~~~~~[0m
+[96msrc/modules/gigs/services/applications.service.ts[0m:[93m61[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'MilestoneProposalDto[]' is not assignable to type 'NullableJsonNullValueInput | InputJsonValue'.
+  Type 'MilestoneProposalDto[]' is not assignable to type 'InputJsonObject'.
+    Index signature for type 'string' is missing in type 'MilestoneProposalDto[]'.
+
+[7m61[0m         milestoneProposals: milestones ? milestones : undefined,
+[7m  [0m [91m        ~~~~~~~~~~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m40839[0m:[93m5[0m
+    [7m40839[0m     milestoneProposals?: NullableJsonNullValueInput | InputJsonValue
+    [7m     [0m [96m    ~~~~~~~~~~~~~~~~~~[0m
+    The expected type comes from property 'milestoneProposals' which is declared here on type '(Without<ApplicationCreateInput, ApplicationUncheckedCreateInput> & ApplicationUncheckedCreateInput) | (Without<...> & ApplicationCreateInput)'
+[96msrc/modules/gigs/services/applications.service.ts[0m:[93m96[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '({ gig: { id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }; applicant: { ...; } & { ...; }; } & { ...; })[]' is not assignable to type 'Application[]'.
+  Type '{ gig: { id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }; applicant: { ...; } & { ...; }; } & { ...; }' is not assignable to type 'Application'.
+    Types of property 'milestoneProposals' are incompatible.
+      Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+        Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m96[0m       applications,
+[7m  [0m [91m      ~~~~~~~~~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m239[0m:[93m3[0m
+    [7m239[0m   applications: Application[];
+    [7m   [0m [96m  ~~~~~~~~~~~~[0m
+    The expected type comes from property 'applications' which is declared here on type 'PaginatedApplications'
+[96msrc/modules/gigs/services/applications.service.ts[0m:[93m125[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '({ gig: { creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 14 more ...; postCount: number; }; } & { ...; }; } & { ...; }; applicant: { ...; } & { ...; }; } & { ...; })[]' is not assignable to type 'Application[]'.
+  Type '{ gig: { creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; ... 14 more ...; postCount: number; }; } & { ...; }; } & { ...; }; applicant: { ...; } & { ...; }; } & { ...; }' is not assignable to type 'Application'.
+    Types of property 'milestoneProposals' are incompatible.
+      Type 'JsonValue' is not assignable to type 'MilestoneProposal[]'.
+        Type 'string' is not assignable to type 'MilestoneProposal[]'.
+
+[7m125[0m       applications,
+[7m   [0m [91m      ~~~~~~~~~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m239[0m:[93m3[0m
+    [7m239[0m   applications: Application[];
+    [7m   [0m [96m  ~~~~~~~~~~~~[0m
+    The expected type comes from property 'applications' which is declared here on type 'PaginatedApplications'
+[96msrc/modules/gigs/services/escrow.service.ts[0m:[93m179[0m:[93m64[0m - [91merror[0m[90m TS2345: [0mArgument of type 'GigEscrowStatus' is not assignable to parameter of type 'EscrowStatus'.
+  Type '"REFUNDED"' is not assignable to type 'EscrowStatus'. Did you mean 'EscrowStatus.FUNDED'?
+
+[7m179[0m     if (![EscrowStatus.FUNDED, EscrowStatus.DISPUTED].includes(escrow.status)) {
+[7m   [0m [91m                                                               ~~~~~~~~~~~~~[0m
+[96msrc/modules/gigs/services/escrow.service.ts[0m:[93m277[0m:[93m71[0m - [91merror[0m[90m TS2345: [0mArgument of type 'GigMilestoneStatus' is not assignable to parameter of type 'MilestoneStatus'.
+  Type '"PENDING"' is not assignable to type 'MilestoneStatus'.
+
+[7m277[0m     if (![MilestoneStatus.PENDING, MilestoneStatus.REJECTED].includes(milestone.status)) {
+[7m   [0m [91m                                                                      ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m130[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; } | { budgetMin: string; budgetMax?: undefined; expiresAt?: undefined; createdAt?: undefined; } | { expiresAt: string; budgetMax?: undefined; budgetMin?: undefined; createdAt?: undefined; } | { ...; }' is not assignable to type 'GigOrderByWithRelationInput | GigOrderByWithRelationInput[]'.
+  Type '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; }' is not assignable to type 'GigOrderByWithRelationInput | GigOrderByWithRelationInput[]'.
+    Type '{ budgetMax: string; budgetMin?: undefined; expiresAt?: undefined; createdAt?: undefined; }' is not assignable to type 'GigOrderByWithRelationInput'.
+      Types of property 'budgetMax' are incompatible.
+        Type 'string' is not assignable to type 'SortOrder'.
+
+[7m130[0m         orderBy,
+[7m   [0m [91m        ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m20459[0m:[93m5[0m
+    [7m20459[0m     orderBy?: GigOrderByWithRelationInput | GigOrderByWithRelationInput[]
+    [7m     [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'orderBy' which is declared here on type '{ select?: GigSelect<DefaultArgs>; include?: GigInclude<DefaultArgs>; where?: GigWhereInput; orderBy?: GigOrderByWithRelationInput | GigOrderByWithRelationInput[]; cursor?: GigWhereUniqueInput; take?: number; skip?: number; distinct?: GigScalarFieldEnum | GigScalarFieldEnum[]; }'
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m141[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }[]' is not assignable to type 'Gig[]'.
+  Type '{ id: string; expiresAt: Date; createdAt: Date; updatedAt: Date; deletedAt: Date; skills: string[]; currency: string; description: string; title: string; status: GigStatus; ... 10 more ...; creatorId: string; }' is not assignable to type 'Gig'.
+    Types of property 'category' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+        Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m141[0m       gigs,
+[7m   [0m [91m      ~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m231[0m:[93m3[0m
+    [7m231[0m   gigs: Gig[];
+    [7m   [0m [96m  ~~~~[0m
+    The expected type comes from property 'gigs' which is declared here on type 'PaginatedGigs'
+[96msrc/modules/gigs/services/gigs.service.ts[0m:[93m201[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '({ creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; location: string; ... 13 more ...; postCount: number; }; } & { ...; }; } & { ...; })[]' is not assignable to type 'Gig[]'.
+  Type '{ creator: { profile: { username: string; id: string; userId: string; createdAt: Date; updatedAt: Date; displayName: string; bio: string; avatarUrl: string; bannerUrl: string; location: string; ... 13 more ...; postCount: number; }; } & { ...; }; } & { ...; }' is not assignable to type 'Gig'.
+    Types of property 'category' are incompatible.
+      Type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.GigCategory' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/gig.types").GigCategory'.
+        Type '"VIDEO_EDITING"' is not assignable to type 'GigCategory'.
+
+[7m201[0m       gigs,
+[7m   [0m [91m      ~~~~[0m
+
+  [96msrc/shared/types/gig.types.ts[0m:[93m231[0m:[93m3[0m
+    [7m231[0m   gigs: Gig[];
+    [7m   [0m [96m  ~~~~[0m
+    The expected type comes from property 'gigs' which is declared here on type 'PaginatedGigs'
+[96msrc/modules/media/services/media.service.ts[0m:[93m24[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m24[0m       const media = await this.prisma.media.create({
+[7m  [0m [91m                                      ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m55[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m55[0m     return this.prisma.media.findUnique({
+[7m  [0m [91m                       ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m74[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m74[0m     return this.prisma.media.findFirst({
+[7m  [0m [91m                       ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m83[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m83[0m     return this.prisma.media.findFirst({
+[7m  [0m [91m                       ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m92[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m92[0m     return this.prisma.media.findFirst({
+[7m  [0m [91m                       ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m125[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m125[0m       this.prisma.media.findMany({
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m131[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m131[0m       this.prisma.media.count({ where }),
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m167[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m167[0m       const media = await this.prisma.media.update({
+[7m   [0m [91m                                      ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m189[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m189[0m       const media = await this.prisma.media.update({
+[7m   [0m [91m                                      ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m221[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m221[0m       const media = await this.prisma.media.update({
+[7m   [0m [91m                                      ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m240[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m240[0m       const media = await this.prisma.media.update({
+[7m   [0m [91m                                      ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m262[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m262[0m       await this.prisma.media.delete({
+[7m   [0m [91m                        ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m277[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m277[0m     const media = await this.prisma.media.findUnique({
+[7m   [0m [91m                                    ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m315[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m315[0m       this.prisma.media.count({
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m318[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m318[0m       this.prisma.media.aggregate({
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m322[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m322[0m       this.prisma.media.groupBy({
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m327[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m327[0m       this.prisma.media.groupBy({
+[7m   [0m [91m                  ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m355[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m355[0m     const deletedMedia = await this.prisma.media.findMany({
+[7m   [0m [91m                                           ~~~~~[0m
+[96msrc/modules/media/services/media.service.ts[0m:[93m379[0m:[93m24[0m - [91merror[0m[90m TS2339: [0mProperty 'media' does not exist on type 'PrismaService'.
+
+[7m379[0m     return this.prisma.media.findMany({
+[7m   [0m [91m                       ~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m97[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m97[0m                 isVerified: true,
+[7m  [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m108[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m108[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m123[0m:[93m21[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m123[0m                     isVerified: true,
+[7m   [0m [91m                    ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m140[0m:[93m49[0m - [91merror[0m[90m TS2551: [0mProperty 'participant2' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'. Did you mean 'participant2Id'?
+
+[7m140[0m           conv.participant1Id === userId ? conv.participant2 : conv.participant1;
+[7m   [0m [91m                                                ~~~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m140[0m:[93m69[0m - [91merror[0m[90m TS2551: [0mProperty 'participant1' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'. Did you mean 'participant1Id'?
+
+[7m140[0m           conv.participant1Id === userId ? conv.participant2 : conv.participant1;
+[7m   [0m [91m                                                                    ~~~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m158[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m158[0m           lastMessage: conv.messages[0]
+[7m   [0m [91m                            ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m160[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m160[0m                 id: conv.messages[0].id,
+[7m   [0m [91m                         ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m161[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m161[0m                 conversationId: conv.messages[0].conversationId,
+[7m   [0m [91m                                     ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m162[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m162[0m                 senderId: conv.messages[0].senderId,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m163[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m163[0m                 content: conv.messages[0].content,
+[7m   [0m [91m                              ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m164[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m164[0m                 mediaUrl: conv.messages[0].mediaUrl,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m165[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m165[0m                 mediaType: conv.messages[0].mediaType,
+[7m   [0m [91m                                ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m166[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m166[0m                 fileName: conv.messages[0].fileName,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m167[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m167[0m                 fileSize: conv.messages[0].fileSize,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m168[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m168[0m                 type: conv.messages[0].type as MessageType,
+[7m   [0m [91m                           ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m169[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m169[0m                 status: conv.messages[0].status as MessageStatus,
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m170[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m170[0m                 createdAt: conv.messages[0].createdAt.toISOString(),
+[7m   [0m [91m                                ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m171[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m171[0m                 readAt: conv.messages[0].readAt?.toISOString(),
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m172[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m172[0m                 metadata: conv.messages[0].metadata as Record<string, any>,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m174[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m174[0m                   id: conv.messages[0].sender.id,
+[7m   [0m [91m                           ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m175[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m175[0m                   username: conv.messages[0].sender.username,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m176[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m176[0m                   profile: conv.messages[0].sender.profile,
+[7m   [0m [91m                                ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m215[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m215[0m             isVerified: true,
+[7m   [0m [91m            ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m240[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m240[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m251[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m251[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m282[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m282[0m                   isVerified: true,
+[7m   [0m [91m                  ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m293[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m293[0m                   isVerified: true,
+[7m   [0m [91m                  ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m319[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m319[0m                   isVerified: true,
+[7m   [0m [91m                  ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m339[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'mediaType' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m339[0m         mediaType: newMessage.mediaType,
+[7m   [0m [91m                              ~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m340[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'fileName' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m340[0m         fileName: newMessage.fileName,
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m341[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'fileSize' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m341[0m         fileSize: newMessage.fileSize,
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m346[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m346[0m         metadata: newMessage.metadata as Record<string, any>,
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m348[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m348[0m           id: newMessage.sender.id,
+[7m   [0m [91m                         ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m349[0m:[93m32[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m349[0m           username: newMessage.sender.username,
+[7m   [0m [91m                               ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m350[0m:[93m31[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m350[0m           profile: newMessage.sender.profile,
+[7m   [0m [91m                              ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m447[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m447[0m                   isVerified: true,
+[7m   [0m [91m                  ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m458[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m458[0m                   isVerified: true,
+[7m   [0m [91m                  ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m495[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'import("/Users/sarahsahl/Desktop/embr/apps/api/src/shared/types/messaging.types").MessageType' is not assignable to type 'import("/Users/sarahsahl/Desktop/embr/node_modules/.prisma/client/index").$Enums.MessageType'.
+
+[7m495[0m         type,
+[7m   [0m [91m        ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m41711[0m:[93m5[0m
+    [7m41711[0m     type?: $Enums.MessageType
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'type' which is declared here on type '(Without<MessageCreateInput, MessageUncheckedCreateInput> & MessageUncheckedCreateInput) | (Without<...> & MessageCreateInput)'
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m506[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m506[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m526[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'mediaType' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m526[0m       mediaType: message.mediaType,
+[7m   [0m [91m                         ~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m527[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'fileName' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m527[0m       fileName: message.fileName,
+[7m   [0m [91m                        ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m528[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'fileSize' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m528[0m       fileSize: message.fileSize,
+[7m   [0m [91m                        ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m533[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m533[0m       metadata: message.metadata as Record<string, any>,
+[7m   [0m [91m                        ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m535[0m:[93m21[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m535[0m         id: message.sender.id,
+[7m   [0m [91m                    ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m536[0m:[93m27[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m536[0m         username: message.sender.username,
+[7m   [0m [91m                          ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m537[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m537[0m         profile: message.sender.profile,
+[7m   [0m [91m                         ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m623[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m623[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m640[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'mediaType' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m640[0m       mediaType: msg.mediaType,
+[7m   [0m [91m                     ~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m641[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'fileName' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m641[0m       fileName: msg.fileName,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m642[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'fileSize' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m642[0m       fileSize: msg.fileSize,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m647[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m647[0m       metadata: msg.metadata as Record<string, any>,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m649[0m:[93m17[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m649[0m         id: msg.sender.id,
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m650[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m650[0m         username: msg.sender.username,
+[7m   [0m [91m                      ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m651[0m:[93m22[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m651[0m         profile: msg.sender.profile,
+[7m   [0m [91m                     ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m702[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m702[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m713[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m713[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m728[0m:[93m21[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m728[0m                     isVerified: true,
+[7m   [0m [91m                    ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m781[0m:[93m34[0m - [91merror[0m[90m TS2551: [0mProperty 'participant1' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'. Did you mean 'participant1Id'?
+
+[7m781[0m       participant1: conversation.participant1,
+[7m   [0m [91m                                 ~~~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m782[0m:[93m34[0m - [91merror[0m[90m TS2551: [0mProperty 'participant2' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'. Did you mean 'participant2Id'?
+
+[7m782[0m       participant2: conversation.participant2,
+[7m   [0m [91m                                 ~~~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m783[0m:[93m33[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m783[0m       lastMessage: conversation.messages[0]
+[7m   [0m [91m                                ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m785[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m785[0m             id: conversation.messages[0].id,
+[7m   [0m [91m                             ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m786[0m:[93m42[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m786[0m             conversationId: conversation.messages[0].conversationId,
+[7m   [0m [91m                                         ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m787[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m787[0m             senderId: conversation.messages[0].senderId,
+[7m   [0m [91m                                   ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m788[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m788[0m             content: conversation.messages[0].content,
+[7m   [0m [91m                                  ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m789[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m789[0m             mediaUrl: conversation.messages[0].mediaUrl,
+[7m   [0m [91m                                   ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m790[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m790[0m             mediaType: conversation.messages[0].mediaType,
+[7m   [0m [91m                                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m791[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m791[0m             fileName: conversation.messages[0].fileName,
+[7m   [0m [91m                                   ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m792[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m792[0m             fileSize: conversation.messages[0].fileSize,
+[7m   [0m [91m                                   ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m793[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m793[0m             type: conversation.messages[0].type as MessageType,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m794[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m794[0m             status: conversation.messages[0].status as MessageStatus,
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m795[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m795[0m             createdAt: conversation.messages[0].createdAt.toISOString(),
+[7m   [0m [91m                                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m796[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m796[0m             readAt: conversation.messages[0].readAt?.toISOString(),
+[7m   [0m [91m                                 ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m797[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m797[0m             metadata: conversation.messages[0].metadata as Record<string, any>,
+[7m   [0m [91m                                   ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m799[0m:[93m32[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m799[0m               id: conversation.messages[0].sender.id,
+[7m   [0m [91m                               ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m800[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m800[0m               username: conversation.messages[0].sender.username,
+[7m   [0m [91m                                     ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m801[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'messages' does not exist on type '{ id: string; createdAt: Date; participant2Id: string; participant1Id: string; lastMessageAt: Date; }'.
+
+[7m801[0m               profile: conversation.messages[0].sender.profile,
+[7m   [0m [91m                                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m857[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isVerified' does not exist in type 'ProfileSelect<DefaultArgs>'.
+
+[7m857[0m                 isVerified: true,
+[7m   [0m [91m                ~~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m874[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'mediaType' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m874[0m       mediaType: msg.mediaType,
+[7m   [0m [91m                     ~~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m875[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'fileName' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m875[0m       fileName: msg.fileName,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m876[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'fileSize' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m876[0m       fileSize: msg.fileSize,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m881[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'.
+
+[7m881[0m       metadata: msg.metadata as Record<string, any>,
+[7m   [0m [91m                    ~~~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m883[0m:[93m17[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m883[0m         id: msg.sender.id,
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m884[0m:[93m23[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m884[0m         username: msg.sender.username,
+[7m   [0m [91m                      ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m885[0m:[93m22[0m - [91merror[0m[90m TS2551: [0mProperty 'sender' does not exist on type '{ id: string; createdAt: Date; type: MessageType; content: string; mediaUrl: string; status: MessageStatus; senderId: string; conversationId: string; readAt: Date; }'. Did you mean 'senderId'?
+
+[7m885[0m         profile: msg.sender.profile,
+[7m   [0m [91m                     ~~~~~~[0m
+[96msrc/modules/messaging/services/messaging.service.ts[0m:[93m929[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'metadata' does not exist in type '(Without<MessageUpdateInput, MessageUncheckedUpdateInput> & MessageUncheckedUpdateInput) | (Without<...> & MessageUpdateInput)'.
+
+[7m929[0m         metadata: { deleted: true, deletedAt: new Date().toISOString() } as any,
+[7m   [0m [91m        ~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m30236[0m:[93m5[0m
+    [7m30236[0m     data: XOR<MessageUpdateInput, MessageUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: MessageSelect<DefaultArgs>; include?: MessageInclude<DefaultArgs>; data: (Without<MessageUpdateInput, MessageUncheckedUpdateInput> & MessageUncheckedUpdateInput) | (Without<...> & MessageUpdateInput); where: MessageWhereUniqueInput; }'
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m124[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ payment: { id: string; userId: string; createdAt: Date; updatedAt: Date; stripeConnectAccountId: string; onboardingCompleted: boolean; chargesEnabled: boolean; payoutsEnabled: boolean; }; } & { ...; }'.
+
+[7m124[0m       `New payout request from ${user.profile?.displayName || user.email}: $${amount}`,
+[7m   [0m [91m                                      ~~~~~~~[0m
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m254[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ payment: { id: string; userId: string; createdAt: Date; updatedAt: Date; stripeConnectAccountId: string; onboardingCompleted: boolean; chargesEnabled: boolean; payoutsEnabled: boolean; }; } & { ...; }'.
+
+[7m254[0m           description: `Payout for ${payout.user.profile?.username || payout.user.email}`,
+[7m   [0m [91m                                                 ~~~~~~~[0m
+[96msrc/modules/monetization/services/payout.service.ts[0m:[93m478[0m:[93m16[0m - [91merror[0m[90m TS2820: [0mType '"ADMIN"' is not assignable to type 'UserRole | EnumUserRoleFilter<"User">'. Did you mean '"admin"'?
+
+[7m478[0m       where: { role: 'ADMIN' },
+[7m   [0m [91m               ~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m36416[0m:[93m5[0m
+    [7m36416[0m     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'role' which is declared here on type 'UserWhereInput'
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m181[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m181[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/appeals.service.ts[0m:[93m398[0m:[93m31[0m - [91merror[0m[90m TS2322: [0mType '"moderator"' is not assignable to type 'UserRole'.
+
+[7m398[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                              ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m32[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m32[0m     const existing = await this.prisma.blockedUser.findUnique({
+[7m  [0m [91m                                       ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m46[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m46[0m     const block = await this.prisma.blockedUser.create({
+[7m  [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m80[0m:[93m15[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'participants' does not exist in type 'ConversationWhereInput'. Did you mean to write 'participant1'?
+
+[7m80[0m               participants: {
+[7m  [0m [91m              ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m85[0m:[93m15[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'participants' does not exist in type 'ConversationWhereInput'. Did you mean to write 'participant1'?
+
+[7m85[0m               participants: {
+[7m  [0m [91m              ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m101[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m101[0m     const block = await this.prisma.blockedUser.findUnique({
+[7m   [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m114[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m114[0m     await this.prisma.blockedUser.delete({
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m133[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m133[0m       this.prisma.blockedUser.findMany({
+[7m   [0m [91m                  ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m153[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m153[0m       this.prisma.blockedUser.count({ where: { blockerId: userId } }),
+[7m   [0m [91m                  ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m176[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m176[0m     const block = await this.prisma.blockedUser.findFirst({
+[7m   [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m206[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m206[0m     const existing = await this.prisma.mutedUser.findUnique({
+[7m   [0m [91m                                       ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m226[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m226[0m     const mute = await this.prisma.mutedUser.create({
+[7m   [0m [91m                                   ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m252[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m252[0m     const mute = await this.prisma.mutedUser.findUnique({
+[7m   [0m [91m                                   ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m265[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m265[0m     await this.prisma.mutedUser.delete({
+[7m   [0m [91m                      ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m284[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m284[0m       this.prisma.mutedUser.findMany({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m304[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m304[0m       this.prisma.mutedUser.count({ where: { muterId: userId } }),
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m327[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m327[0m     const mute = await this.prisma.mutedUser.findUnique({
+[7m   [0m [91m                                   ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m338[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m338[0m       await this.prisma.mutedUser.delete({
+[7m   [0m [91m                        ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m352[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m352[0m     const existing = await this.prisma.mutedKeyword.findFirst({
+[7m   [0m [91m                                       ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m365[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m365[0m     const mutedKeyword = await this.prisma.mutedKeyword.create({
+[7m   [0m [91m                                           ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m380[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m380[0m     const keyword = await this.prisma.mutedKeyword.findUnique({
+[7m   [0m [91m                                      ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m388[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m388[0m     await this.prisma.mutedKeyword.delete({
+[7m   [0m [91m                      ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m399[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m399[0m     const keywords = await this.prisma.mutedKeyword.findMany({
+[7m   [0m [91m                                       ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m411[0m:[93m40[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedKeyword' does not exist on type 'PrismaService'.
+
+[7m411[0m     const keywords = await this.prisma.mutedKeyword.findMany({
+[7m   [0m [91m                                       ~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m430[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'blockedUser' does not exist on type 'PrismaService'.
+
+[7m430[0m       this.prisma.blockedUser.findMany({
+[7m   [0m [91m                  ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m439[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m439[0m       this.prisma.mutedUser.findMany({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/blocking.service.ts[0m:[93m467[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'mutedUser' does not exist on type 'PrismaService'.
+
+[7m467[0m     const result = await this.prisma.mutedUser.deleteMany({
+[7m   [0m [91m                                     ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m53[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m53[0m     const rules = await this.prisma.contentRule.findMany({
+[7m  [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m130[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m130[0m     const rule = await this.prisma.contentRule.create({
+[7m   [0m [91m                                   ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m150[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m150[0m     const rules = await this.prisma.contentRule.findMany({
+[7m   [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m162[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m162[0m     const rule = await this.prisma.contentRule.update({
+[7m   [0m [91m                                   ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m174[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'contentRule' does not exist on type 'PrismaService'.
+
+[7m174[0m     await this.prisma.contentRule.delete({
+[7m   [0m [91m                      ~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m189[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m189[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m192[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m192[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m198[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m198[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m204[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m204[0m       this.prisma.filterLog.count({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m210[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m210[0m       this.prisma.filterLog.groupBy({
+[7m   [0m [91m                  ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m233[0m:[93m45[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m233[0m     const recentContent = await this.prisma.filterLog.findMany({
+[7m   [0m [91m                                            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/content-filter.service.ts[0m:[93m333[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'filterLog' does not exist on type 'PrismaService'.
+
+[7m333[0m     await this.prisma.filterLog.create({
+[7m   [0m [91m                      ~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m192[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m192[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m433[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'suspended' does not exist in type '(Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput)'.
+
+[7m433[0m             suspended: true,
+[7m   [0m [91m            ~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m5297[0m:[93m5[0m
+    [7m5297[0m     data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: UserSelect<DefaultArgs>; include?: UserInclude<DefaultArgs>; data: (Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput); where: UserWhereUniqueInput; }'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m456[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'suspended' does not exist in type '(Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput)'.
+
+[7m456[0m             suspended: false,
+[7m   [0m [91m            ~~~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m5297[0m:[93m5[0m
+    [7m5297[0m     data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    [7m    [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: UserSelect<DefaultArgs>; include?: UserInclude<DefaultArgs>; data: (Without<UserUpdateInput, UserUncheckedUpdateInput> & UserUncheckedUpdateInput) | (Without<...> & UserUpdateInput); where: UserWhereUniqueInput; }'
+[96msrc/modules/safety/services/moderation-actions.service.ts[0m:[93m469[0m:[93m11[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'deleted' does not exist in type '(Without<PostUpdateInput, PostUncheckedUpdateInput> & PostUncheckedUpdateInput) | (Without<...> & PostUpdateInput)'. Did you mean to write 'deletedAt'?
+
+[7m469[0m           deleted: true,
+[7m   [0m [91m          ~~~~~~~[0m
+
+  [96m../../node_modules/.prisma/client/index.d.ts[0m:[93m12088[0m:[93m5[0m
+    [7m12088[0m     data: XOR<PostUpdateInput, PostUncheckedUpdateInput>
+    [7m     [0m [96m    ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type '{ select?: PostSelect<DefaultArgs>; include?: PostInclude<DefaultArgs>; data: (Without<PostUpdateInput, PostUncheckedUpdateInput> & PostUncheckedUpdateInput) | (Without<...> & PostUpdateInput); where: PostWhereUniqueInput; }'
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m90[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m90[0m             mediaUrls: true,
+[7m  [0m [91m            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m161[0m:[93m15[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m161[0m               mediaUrls: true,
+[7m   [0m [91m              ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m211[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'receivedReports' does not exist in type 'UserCountOutputTypeSelect<DefaultArgs>'.
+
+[7m211[0m                 receivedReports: true,
+[7m   [0m [91m                ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m221[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'mediaUrls' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'mediaUrl'?
+
+[7m221[0m             mediaUrls: true,
+[7m   [0m [91m            ~~~~~~~~~[0m
+[96msrc/modules/safety/services/reports.service.ts[0m:[93m448[0m:[93m31[0m - [91merror[0m[90m TS2322: [0mType '"moderator"' is not assignable to type 'UserRole'.
+
+[7m448[0m         role: { in: ['admin', 'moderator'] },
+[7m   [0m [91m                              ~~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m413[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'viewsCount' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'viewCount'?
+
+[7m413[0m             viewsCount: true,
+[7m   [0m [91m            ~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m425[0m:[93m36[0m - [91merror[0m[90m TS2339: [0mProperty 'posts' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m425[0m       const totalEngagement = user.posts.reduce((sum, post) => {
+[7m   [0m [91m                                   ~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m430[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m430[0m       const score = totalEngagement + user._count.followers * 0.5;
+[7m   [0m [91m                                           ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m440[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m440[0m       profile: user.profile,
+[7m   [0m [91m                    ~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m443[0m:[93m25[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m443[0m         followers: user._count.followers,
+[7m   [0m [91m                        ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m524[0m:[93m13[0m - [91merror[0m[90m TS2561: [0mObject literal may only specify known properties, but 'viewsCount' does not exist in type 'PostSelect<DefaultArgs>'. Did you mean to write 'viewCount'?
+
+[7m524[0m             viewsCount: true,
+[7m   [0m [91m            ~~~~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m538[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'posts' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m538[0m       const engagement = creator.posts.reduce((sum, post) => {
+[7m   [0m [91m                                 ~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m544[0m:[93m60[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m544[0m       const engagementRate = engagement / Math.max(creator._count.followers, 100);
+[7m   [0m [91m                                                           ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m557[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'profile' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m557[0m         profile: creator.profile,
+[7m   [0m [91m                         ~~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m559[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m559[0m           followers: creator._count.followers,
+[7m   [0m [91m                             ~~~~~~[0m
+[96msrc/modules/social-graph/services/user-discovery.service.ts[0m:[93m560[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty '_count' does not exist on type '{ email: string; username: string; fullName: string; id: string; createdAt: Date; passwordHash: string; googleId: string; stripeCustomerId: string; role: UserRole; isVerified: boolean; lastLoginAt: Date; updatedAt: Date; deletedAt: Date; }'.
+
+[7m560[0m           posts: creator._count.posts,
+[7m   [0m [91m                         ~~~~~~[0m
+
+Found 196 error(s).
+

@@ -1,0 +1,155 @@
+version: '3.8'
+
+services:
+  # NestJS API Server
+  api:
+    build:
+      context: ../../apps/api
+      dockerfile: Dockerfile
+    container_name: embr_api_prod
+    restart: always
+    ports:
+      - '3003:3003'
+    environment:
+      NODE_ENV: production
+      PORT: 3003
+      DATABASE_URL: ${DATABASE_URL}
+      DIRECT_URL: ${DIRECT_URL}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6380
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET}
+      MUX_TOKEN_ID: ${MUX_TOKEN_ID}
+      MUX_TOKEN_SECRET: ${MUX_TOKEN_SECRET}
+      MUX_WEBHOOK_SECRET: ${MUX_WEBHOOK_SECRET}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      RELEVNT_API_KEY: ${RELEVNT_API_KEY}
+      RELEVNT_API_URL: ${RELEVNT_API_URL}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3003/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - embr_network
+    labels:
+      - "com.embr.service=api"
+      - "com.embr.version=${VERSION:-latest}"
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: embr_postgres_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=en_US.UTF-8"
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+      - ./postgres/backup:/backup
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - embr_network
+    labels:
+      - "com.embr.service=database"
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: embr_redis_prod
+    restart: always
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data_prod:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - embr_network
+    labels:
+      - "com.embr.service=cache"
+
+  # Nginx Reverse Proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: embr_nginx_prod
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - api
+    networks:
+      - embr_network
+    labels:
+      - "com.embr.service=proxy"
+
+volumes:
+  postgres_data_prod:
+    driver: local
+  redis_data_prod:
+    driver: local
+
+networks:
+  embr_network:
+    driver: bridge
+
+# Production Deployment Notes:
+# 
+# 1. Environment Variables:
+#    Create a .env.production file with all required variables
+#    Never commit this file to version control
+# 
+# 2. SSL Certificates:
+#    Place SSL certificates in ./nginx/ssl/ directory
+#    Update nginx.conf with proper certificate paths
+# 
+# 3. Database Backups:
+#    Automated backups are stored in ./postgres/backup/
+#    Set up cron jobs for regular backup rotation
+# 
+# 4. Monitoring:
+#    Consider adding Prometheus/Grafana for metrics
+#    Set up log aggregation (ELK stack or similar)
+# 
+# 5. Scaling:
+#    For horizontal scaling, use Docker Swarm or Kubernetes
+#    Consider managed database services (AWS RDS, etc.)
+# 
+# 6. Security:
+#    Enable firewall rules
+#    Use Docker secrets for sensitive data
+#    Regular security updates for all images
+# 
+# Deploy:
+#   docker-compose -f docker-compose.prod.yml up -d
+# 
+# View logs:
+#   docker-compose -f docker-compose.prod.yml logs -f
+# 
+# Stop:
+#   docker-compose -f docker-compose.prod.yml down

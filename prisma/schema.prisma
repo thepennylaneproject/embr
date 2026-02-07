@@ -1,0 +1,1075 @@
+// Embr Platform Database Schema
+// Complete schema for social media + freelance marketplace
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // For migrations
+}
+
+// ============================================
+// USER & AUTHENTICATION
+// ============================================
+
+enum UserRole {
+  USER
+  CREATOR
+  MODERATOR
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  username      String    @unique
+  passwordHash  String?   // Nullable for OAuth-only users
+  fullName      String?
+  googleId      String?
+  stripeCustomerId String?
+  role          UserRole  @default(USER)
+  isVerified    Boolean   @default(false)
+  suspended     Boolean   @default(false)
+  suspendedUntil DateTime?
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime? // Soft delete
+
+  // Relations
+  profile       Profile?
+  posts         Post[]
+  comments      Comment[]
+  likes         Like[]
+  followers     Follow[]  @relation("Following")
+  following     Follow[]  @relation("Follower")
+  // Monetization Relations (Moved to Wallet)
+  wallet        Wallet?
+  refreshTokens RefreshToken[]
+  passwordResetTokens PasswordResetToken[]
+  emailVerificationTokens EmailVerificationToken[]
+  payouts      Payout[]
+  gigs          Gig[]
+  applications  Application[]
+  escrowsAsPayer Escrow[] @relation("EscrowPayer")
+  escrowsAsPayee Escrow[] @relation("EscrowPayee")
+  disputesRaised Dispute[] @relation("DisputeRaiser")
+  disputesAgainst Dispute[] @relation("DisputeAgainst")
+  gigReviewsGiven GigReview[] @relation("GigReviewer")
+  gigReviewsReceived GigReview[] @relation("GigReviewee")
+  jobApplications JobApplication[]
+  conversations1 Conversation[] @relation("Participant1")
+  conversations2 Conversation[] @relation("Participant2")
+  messages      Message[]
+  notifications Notification[]
+  reports       Report[]  @relation("Reporter")
+  reportsReceived Report[] @relation("ReportedUser")
+  moderationActions ModerationAction[] @relation("AffectedUser")
+  moderatorActions ModerationAction[] @relation("Moderator")
+  appeals       Appeal[]
+  analyticsEvents AnalyticsEvent[]
+
+  // Safety & Media
+  blocking      BlockedUser[] @relation("Blocker")
+  blockedBy     BlockedUser[] @relation("Blocked")
+  muting        MutedUser[]   @relation("Muter")
+  mutedBy       MutedUser[]   @relation("Muted")
+  mutedKeywords MutedKeyword[]
+  media         Media[]
+  filterLogs    FilterLog[]
+  transactionsRelated Transaction[] @relation("TransactionRelatedUser")
+
+  @@index([email])
+  @@index([role])
+  @@index([deletedAt])
+}
+
+model Profile {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  username       String   @unique
+  displayName    String
+  bio            String?
+  avatarUrl      String?
+  bannerUrl      String?
+  location       String?
+  website        String?
+  socialLinks    Json?    // { twitter, instagram, linkedin, etc }
+  availability   String?
+  skills         String[] // For creators
+  categories     String[] // Content categories
+  isCreator      Boolean  @default(false)
+  isPrivate      Boolean  @default(false)
+  allowTips      Boolean  @default(true)
+  isVerified         Boolean  @default(false)
+  notificationPreference String @default("all")
+  followerCount  Int      @default(0)
+  followingCount Int      @default(0)
+  postCount      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([username])
+  @@index([userId])
+}
+
+model Follow {
+  id          String   @id @default(uuid())
+  followerId  String
+  follower    User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String
+  isRevoked Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String
+  isUsed    Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String
+  isUsed    Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ============================================
+// CONTENT & SOCIAL
+// ============================================
+
+enum PostType {
+  TEXT
+  IMAGE
+  VIDEO
+}
+
+enum PostVisibility {
+  PUBLIC
+  FOLLOWERS
+  PRIVATE
+}
+
+model Post {
+  id            String         @id @default(uuid())
+  authorId      String
+  author        User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  type          PostType       @default(TEXT)
+  content       String?
+  mediaUrl      String?
+  thumbnailUrl  String?
+  muxAssetId    String?        // For video processing
+  muxPlaybackId String?
+  visibility    PostVisibility @default(PUBLIC)
+  hashtags      String[]
+  mentions      String[]       // User IDs
+  viewCount     Int            @default(0)
+  likeCount     Int            @default(0)
+  commentCount  Int            @default(0)
+  shareCount    Int            @default(0)
+  duration      Int?           // Video duration in seconds
+  isProcessing  Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  deletedAt     DateTime?      // Soft delete
+
+  // Relations
+  comments      Comment[]
+  likes         Like[]
+  reports       Report[]
+  tips          Tip[]
+  media         Media[]
+
+  @@index([authorId])
+  @@index([type])
+  @@index([visibility])
+  @@index([createdAt])
+  @@index([deletedAt])
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  postId    String
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  content   String
+  parentId  String?   // For nested replies
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  likeCount Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Soft delete
+
+  // Relations
+  reports   Report[]
+  likes     Like[]
+
+  @@index([postId])
+  @@index([authorId])
+  @@index([parentId])
+  @@index([createdAt])
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+  @@index([userId])
+  @@index([postId])
+  @@index([commentId])
+}
+
+// ============================================
+// MONETIZATION & WALLET
+// ============================================
+
+enum TransactionType {
+  TIP_SENT
+  TIP_RECEIVED
+  PURCHASE
+  PAYOUT
+  PAYWALL_UNLOCK
+  GIG_PAYMENT
+  GIG_ESCROW
+  GIG_RELEASE
+  PLATFORM_FEE
+  REFUND
+  ADJUSTMENT
+  CREDIT
+  DEBIT
+}
+
+model Wallet {
+  id              String               @id @default(uuid())
+  userId          String               @unique
+  user            User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Balance tracking
+  balance         Int                  @default(0) // Available balance in cents
+  pendingBalance  Int                  @default(0) // Funds in escrow/pending
+  totalEarned     Int                  @default(0)
+  totalWithdrawn  Int                  @default(0)
+  currency        String               @default("USD")
+  
+  // Stripe Connect
+  stripeConnectAccountId String?        @unique
+  onboardingCompleted    Boolean       @default(false)
+  chargesEnabled         Boolean       @default(false)
+  payoutsEnabled         Boolean       @default(false)
+  kycStatus              String        @default("none")
+  
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  
+  // Relations
+  transactions    Transaction[]
+  payouts         Payout[]
+  tipsSent        Tip[]                @relation("TipSender")
+  tipsReceived    Tip[]                @relation("TipReceiver")
+
+  @@index([userId])
+}
+
+model Transaction {
+  id            String          @id @default(uuid())
+  walletId      String
+  wallet        Wallet          @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  userId        String?
+  user          User?           @relation("TransactionRelatedUser", fields: [userId], references: [id], onDelete: SetNull)
+  
+  type          TransactionType
+  amount        Int               // In cents
+  fee           Int               @default(0)
+  netAmount     Int               @default(0)
+  status        TransactionStatus @default(PENDING)
+  description   String
+  
+  referenceId   String?
+  referenceType String?
+  
+  stripePaymentIntentId String?   @unique
+  stripeTransferId      String?   @unique
+  
+  metadata      Json?
+  createdAt     DateTime          @default(now())
+  completedAt   DateTime?
+
+  Tip           Tip?
+  Payout        Payout?
+
+  @@index([walletId])
+  @@index([userId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum TipStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model Tip {
+  id                    String    @id @default(uuid())
+  senderId              String
+  sender                Wallet    @relation("TipSender", fields: [senderId], references: [userId], onDelete: Cascade)
+  recipientId           String
+  recipient             Wallet    @relation("TipReceiver", fields: [recipientId], references: [userId], onDelete: Cascade)
+  postId                String?
+  post                  Post?     @relation(fields: [postId], references: [id], onDelete: SetNull)
+  
+  amount                Int
+  fee                   Int       @default(0)
+  netAmount             Int       @default(0)
+  message               String?
+  status                TipStatus @default(PENDING)
+  refundReason          String?
+  
+  transactionId         String?   @unique
+  transaction           Transaction? @relation(fields: [transactionId], references: [id])
+  
+  stripePaymentIntentId String?
+  createdAt             DateTime  @default(now())
+  completedAt           DateTime?
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([postId])
+  @@index([createdAt])
+}
+
+enum PayoutStatus {
+  PENDING
+  APPROVED
+  PROCESSING
+  COMPLETED
+  REJECTED
+  FAILED
+}
+
+model Payout {
+  id                  String         @id @default(uuid())
+  userId              String
+  user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  walletId            String
+  wallet              Wallet         @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  
+  amount              Int            // In cents
+  fee                 Int            @default(0)
+  netAmount           Int            @default(0)
+  currency            String         @default("USD")
+  status              PayoutStatus   @default(PENDING)
+  
+  stripeTransferId    String?        @unique
+  stripePayoutId      String?        @unique
+  bankAccountLast4    String?
+  
+  requestedAt         DateTime       @default(now())
+  processedAt         DateTime?
+  completedAt         DateTime?
+  rejectedAt          DateTime?
+  rejectedBy          String?
+  rejectionReason     String?
+  failureReason       String?
+  note                String?
+  approvedAt          DateTime?
+  approvedBy          String?        // Admin user ID
+  paidAt              DateTime?
+  
+  transactionId       String?        @unique
+  transaction         Transaction?   @relation(fields: [transactionId], references: [id])
+
+  createdAt           DateTime       @default(now())
+
+  @@index([userId])
+  @@index([walletId])
+  @@index([status])
+  @@index([requestedAt])
+}
+
+// Payment model is now merged into Wallet
+
+// ============================================
+// GIGS & MARKETPLACE
+// ============================================
+
+enum GigStatus {
+  DRAFT
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DISPUTED
+}
+
+enum GigCategory {
+  VIDEO_EDITING
+  GRAPHIC_DESIGN
+  WRITING
+  MUSIC_AUDIO
+  ANIMATION
+  PHOTOGRAPHY
+  SOCIAL_MEDIA
+  CONSULTING
+  WEB_DEV
+  VOICE_OVER
+  OTHER
+}
+
+enum GigBudgetType {
+  FIXED
+  HOURLY
+  MILESTONE
+}
+
+enum GigExperienceLevel {
+  BEGINNER
+  INTERMEDIATE
+  EXPERT
+}
+
+enum GigApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+enum GigMilestoneStatus {
+  PENDING
+  IN_PROGRESS
+  SUBMITTED
+  APPROVED
+  REJECTED
+}
+
+enum GigEscrowStatus {
+  CREATED
+  FUNDED
+  RELEASED
+  REFUNDED
+  DISPUTED
+}
+
+enum GigDisputeStatus {
+  OPEN
+  UNDER_REVIEW
+  RESOLVED
+}
+
+model Gig {
+  id                 String             @id @default(uuid())
+  creatorId          String
+  creator            User               @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  title              String
+  description        String
+  category           GigCategory
+  budgetType         GigBudgetType
+  budgetMin          Float
+  budgetMax          Float
+  currency           String             @default("USD")
+  experienceLevel    GigExperienceLevel
+  estimatedDuration  Int
+  skills             String[]
+  deliverables       String[]
+  attachments        String[]           @default([])
+  status             GigStatus          @default(DRAFT)
+  applicationsCount  Int                @default(0)
+  viewsCount         Int                @default(0)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  expiresAt          DateTime?
+  deletedAt          DateTime?
+
+  applications       Application[]
+  milestones         GigMilestone[]
+  escrows            Escrow[]
+  disputes           Dispute[]
+  reviews            GigReview[]
+
+  @@index([creatorId])
+  @@index([category])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Application {
+  id                 String             @id @default(uuid())
+  gigId              String
+  gig                Gig                @relation(fields: [gigId], references: [id], onDelete: Cascade)
+  applicantId        String
+  applicant          User               @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  coverLetter        String
+  proposedBudget     Float
+  proposedTimeline   Int
+  portfolioLinks     String[]
+  relevantExperience String
+  milestoneProposals Json?
+  status             GigApplicationStatus @default(PENDING)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  milestones         GigMilestone[]
+  escrow             Escrow?
+  review             GigReview?
+  disputes           Dispute[]
+
+  @@unique([gigId, applicantId])
+  @@index([gigId])
+  @@index([applicantId])
+  @@index([status])
+}
+
+model GigMilestone {
+  id            String            @id @default(uuid())
+  gigId         String
+  gig           Gig               @relation(fields: [gigId], references: [id], onDelete: Cascade)
+  applicationId String
+  application   Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  title         String
+  description   String
+  amount        Float
+  dueDate       DateTime
+  status        GigMilestoneStatus @default(PENDING)
+  order         Int
+  submittedAt   DateTime?
+  approvedAt    DateTime?
+  rejectedAt    DateTime?
+  feedback      String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@index([gigId])
+  @@index([applicationId])
+  @@index([status])
+}
+
+model Escrow {
+  id                    String          @id @default(uuid())
+  gigId                 String
+  gig                   Gig             @relation(fields: [gigId], references: [id], onDelete: Cascade)
+  applicationId         String          @unique
+  application           Application     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  payerId               String
+  payer                 User            @relation("EscrowPayer", fields: [payerId], references: [id], onDelete: Cascade)
+  payeeId               String
+  payee                 User            @relation("EscrowPayee", fields: [payeeId], references: [id], onDelete: Cascade)
+  amount                Float
+  currency              String          @default("USD")
+  status                GigEscrowStatus @default(CREATED)
+  stripePaymentIntentId String?
+  stripeFundingMethod   String?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  fundedAt              DateTime?
+  releasedAt            DateTime?
+  refundedAt            DateTime?
+
+  disputes              Dispute[]
+
+  @@index([gigId])
+  @@index([payerId])
+  @@index([payeeId])
+  @@index([status])
+}
+
+model Dispute {
+  id            String            @id @default(uuid())
+  gigId         String
+  gig           Gig               @relation(fields: [gigId], references: [id], onDelete: Cascade)
+  applicationId String
+  application   Application       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  escrowId      String
+  escrow        Escrow            @relation(fields: [escrowId], references: [id], onDelete: Cascade)
+  raisedBy      String
+  raiser        User              @relation("DisputeRaiser", fields: [raisedBy], references: [id], onDelete: Cascade)
+  against       String
+  againstUser   User              @relation("DisputeAgainst", fields: [against], references: [id], onDelete: Cascade)
+  reason        String
+  description   String
+  evidence      String[]
+  status        GigDisputeStatus  @default(OPEN)
+  resolution    String?
+  resolvedBy    String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  resolvedAt    DateTime?
+
+  @@index([gigId])
+  @@index([applicationId])
+  @@index([escrowId])
+  @@index([status])
+}
+
+model GigReview {
+  id              String   @id @default(uuid())
+  gigId           String
+  gig             Gig      @relation(fields: [gigId], references: [id], onDelete: Cascade)
+  applicationId   String   @unique
+  application     Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  reviewerId      String
+  reviewer        User     @relation("GigReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+  revieweeId      String
+  reviewee        User     @relation("GigReviewee", fields: [revieweeId], references: [id], onDelete: Cascade)
+  rating          Int
+  comment         String
+  professionalism Int
+  communication   Int
+  quality         Int
+  timeliness      Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([revieweeId])
+}
+
+// ============================================
+// JOBS BOARD (Relevnt Integration)
+// ============================================
+
+enum JobStatus {
+  ACTIVE
+  FILLED
+  EXPIRED
+}
+
+model Job {
+  id           String      @id @default(uuid())
+  relevntId    String      @unique
+  title        String
+  company      String
+  location     String
+  salaryMin    Int?
+  salaryMax    Int?
+  remote       Boolean     @default(false)
+  description  String      @db.Text
+  requirements String[]
+  benefits     String[]
+  applyUrl     String
+  tags         String[]
+  postedAt     DateTime
+  expiresAt    DateTime?
+  lastSyncedAt DateTime    @default(now())
+  status       JobStatus   @default(ACTIVE)
+
+  jobApplications JobApplication[]
+
+  @@index([relevntId])
+  @@index([status])
+  @@index([remote])
+  @@index([postedAt])
+}
+
+enum JobApplicationStatus {
+  SUBMITTED
+  VIEWED
+  INTERVIEWING
+  REJECTED
+  ACCEPTED
+  WITHDRAWN
+}
+
+model JobApplication {
+  id             String               @id @default(uuid())
+  jobId          String
+  job            Job                  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumeUrl      String
+  portfolioUrls  String[]
+  coverLetter    String?              @db.Text
+  status         JobApplicationStatus @default(SUBMITTED)
+  submittedAt    DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+
+  @@unique([jobId, userId])
+  @@index([jobId])
+  @@index([userId])
+  @@index([status])
+}
+
+// ============================================
+// MESSAGING
+// ============================================
+
+model Conversation {
+  id             String   @id @default(uuid())
+  participant1Id String
+  participant1   User     @relation("Participant1", fields: [participant1Id], references: [id], onDelete: Cascade)
+  participant2Id String
+  participant2   User     @relation("Participant2", fields: [participant2Id], references: [id], onDelete: Cascade)
+  lastMessageAt  DateTime @default(now())
+  createdAt      DateTime @default(now())
+
+  // Relations
+  messages       Message[]
+
+  @@unique([participant1Id, participant2Id])
+  @@index([participant1Id])
+  @@index([participant2Id])
+  @@index([lastMessageAt])
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  FILE
+  LOCATION
+  GIG_OFFER
+  GIG_MILESTONE
+}
+
+enum MessageStatus {
+  SENT
+  DELIVERED
+  READ
+}
+
+model Message {
+  id             String        @id @default(uuid())
+  conversationId String
+  conversation   Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User          @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  content        String?       @db.Text
+  mediaUrl       String?
+  mediaType      String?
+  fileName       String?
+  fileSize       Int?
+  type           MessageType   @default(TEXT)
+  status         MessageStatus @default(SENT)
+  metadata       Json?
+  createdAt      DateTime      @default(now())
+  readAt         DateTime?
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([createdAt])
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
+
+model Notification {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type          String
+  title         String?
+  message       String?
+  actorId       String?
+  referenceId   String?
+  referenceType String?
+  isRead        Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+  @@index([actorId])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+// ============================================
+// CONTENT MODERATION
+// ============================================
+
+enum ReportReason {
+  SPAM
+  HARASSMENT
+  ILLEGAL
+  NSFW_UNLABELED
+  COPYRIGHT
+  IMPERSONATION
+  SELF_HARM
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  UNDER_REVIEW
+  ACTION_TAKEN
+  DISMISSED
+}
+
+model Report {
+  id                String       @id @default(uuid())
+  reporterId        String
+  reporter          User         @relation("Reporter", fields: [reporterId], references: [id], onDelete: Cascade)
+  reportedUserId    String?
+  reportedUser      User?        @relation("ReportedUser", fields: [reportedUserId], references: [id], onDelete: Cascade)
+  reportedPostId    String?
+  reportedPost      Post?        @relation(fields: [reportedPostId], references: [id], onDelete: Cascade)
+  reportedCommentId String?
+  reportedComment   Comment?     @relation(fields: [reportedCommentId], references: [id], onDelete: Cascade)
+  reason            ReportReason
+  description       String?      @db.Text
+  status            ReportStatus @default(PENDING)
+  reviewerId        String?
+  reviewedAt        DateTime?
+  action            String?
+  createdAt         DateTime     @default(now())
+
+  @@index([status])
+  @@index([reportedUserId])
+  @@index([createdAt])
+}
+
+enum ActionType {
+  WARNING
+  CONTENT_REMOVAL
+  SUSPENSION
+  BAN
+}
+
+model ModerationAction {
+  id          String     @id @default(uuid())
+  userId      String
+  user        User       @relation("AffectedUser", fields: [userId], references: [id], onDelete: Cascade)
+  moderatorId String
+  moderator   User       @relation("Moderator", fields: [moderatorId], references: [id], onDelete: Cascade)
+  type        ActionType
+  reason      String     @db.Text
+  duration    Int?       // Duration in days (null = permanent)
+  postId      String?
+  commentId   String?
+  appealable  Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  expiresAt   DateTime?
+
+  // Relations
+  appeals     Appeal[]
+
+  @@index([userId])
+  @@index([type])
+  @@index([expiresAt])
+}
+
+enum AppealStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  DENIED
+}
+
+model Appeal {
+  id         String              @id @default(uuid())
+  actionId   String
+  action     ModerationAction    @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reason     String              @db.Text
+  status     AppealStatus        @default(PENDING)
+  reviewerId String?
+  reviewNote String?             @db.Text
+  createdAt  DateTime            @default(now())
+  resolvedAt DateTime?
+
+  @@index([actionId])
+  @@index([status])
+}
+
+// ============================================
+// ANALYTICS
+// ============================================
+
+enum AnalyticsEventType {
+  VIEW
+  LIKE
+  COMMENT
+  SHARE
+  TIP
+  PROFILE_VIEW
+  FOLLOW
+  VIDEO_WATCH
+  GIG_VIEW
+  JOB_VIEW
+}
+
+model AnalyticsEvent {
+  id           String             @id @default(uuid())
+  userId       String?
+  user         User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+  type         AnalyticsEventType
+  entityType   String             // 'post', 'gig', 'job', 'user'
+  entityId     String
+  metadata     Json?              // Additional event data
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime           @default(now())
+
+  @@index([userId])
+  @@index([type])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+// ============================================
+// MEDIA & SAFETY (Added for reconciliation)
+// ============================================
+
+model Media {
+  id            String    @id @default(uuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fileName      String
+  fileType      String
+  fileSize      Int
+  contentType   String
+  uploadId      String?   @unique
+  fileKey       String    @unique
+  fileUrl       String
+  thumbnailUrl  String?
+  thumbnailKey  String?
+  muxAssetId    String?   @unique
+  muxPlaybackId String?
+  playbackUrl   String?
+  duration      Float?
+  aspectRatio   String?
+  status        String    @default("pending") // pending, processing, completed, error, deleted
+  errorMessage  String?
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+
+  postId        String?
+  post          Post?     @relation(fields: [postId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([status])
+  @@index([fileKey])
+}
+
+model BlockedUser {
+  id            String   @id @default(uuid())
+  blockerId     String
+  blocker       User     @relation("Blocker", fields: [blockerId], references: [id], onDelete: Cascade)
+  blockedId     String
+  blocked       User     @relation("Blocked", fields: [blockedId], references: [id], onDelete: Cascade)
+  reason        String?
+  createdAt     DateTime @default(now())
+
+  @@unique([blockerId, blockedId])
+  @@index([blockerId])
+  @@index([blockedId])
+}
+
+model MutedUser {
+  id            String   @id @default(uuid())
+  muterId       String
+  muter         User     @relation("Muter", fields: [muterId], references: [id], onDelete: Cascade)
+  mutedId       String
+  muted         User     @relation("Muted", fields: [mutedId], references: [id], onDelete: Cascade)
+  expiresAt     DateTime?
+  createdAt     DateTime @default(now())
+
+  @@unique([muterId, mutedId])
+  @@index([muterId])
+  @@index([mutedId])
+}
+
+model MutedKeyword {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  keyword       String
+  caseSensitive Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+}
+
+// Filtering Logs
+model FilterLog {
+  id           String       @id @default(uuid())
+  userId       String
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content      String       @db.Text
+  action       FilterAction
+  score        Float
+  matchedRules String[]
+  createdAt    DateTime     @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+enum FilterAction {
+  BLOCK
+  FLAG
+  HIDE
+  ALLOW
+}
+
+// Content Rules
+model ContentRule {
+  id            String       @id @default(uuid())
+  name          String
+  description   String?
+  keywords      String[]
+  action        FilterAction
+  caseSensitive Boolean      @default(false)
+  enabled       Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+

@@ -1,0 +1,24 @@
+
+> embr-infrastructure@1.0.0 build:web
+> npm --prefix apps/web run build
+
+
+> embr-web@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.5
+
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/components/gigs/GigManagementDashboard.tsx:250:69
+Type error: Argument of type 'GigStatus' is not assignable to parameter of type '"DRAFT" | "OPEN"'.
+  Type '"IN_PROGRESS"' is not assignable to type '"DRAFT" | "OPEN"'.
+
+[0m [90m 248 |[39m                           [33m<[39m[33m/[39m[33mbutton[39m[33m>[39m[0m
+[0m [90m 249 |[39m                         )}[0m
+[0m[31m[1m>[22m[39m[90m 250 |[39m                         {[[33mGigStatus[39m[33m.[39m[33mOPEN[39m[33m,[39m [33mGigStatus[39m[33m.[39m[33mDRAFT[39m][33m.[39mincludes(gig[33m.[39mstatus) [33m&&[39m ([0m
+[0m [90m     |[39m                                                                     [31m[1m^[22m[39m[0m
+[0m [90m 251 |[39m                           [33m<[39m[33mbutton[39m[0m
+[0m [90m 252 |[39m                             onClick[33m=[39m{() [33m=>[39m handleCancelGig(gig[33m.[39mid)}[0m
+[0m [90m 253 |[39m                             className[33m=[39m[32m"px-4 py-2 text-red-600 hover:text-red-700 transition-colors text-sm"[39m[0m

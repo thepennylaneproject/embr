@@ -1,0 +1,54 @@
+{
+  "name": "embr-infrastructure",
+  "version": "1.0.0",
+  "description": "Complete infrastructure setup for Embr platform",
+  "private": true,
+  "scripts": {
+    "db:migrate:dev": "prisma migrate dev --schema prisma/schema.prisma",
+    "db:migrate:deploy": "prisma migrate deploy --schema prisma/schema.prisma",
+    "db:migrate:reset": "prisma migrate reset --schema prisma/schema.prisma",
+    "db:migrate:status": "prisma migrate status --schema prisma/schema.prisma",
+    "db:generate": "prisma generate --schema prisma/schema.prisma",
+    "db:push": "prisma db push --schema prisma/schema.prisma",
+    "db:studio": "prisma studio --schema prisma/schema.prisma",
+    "db:seed": "ts-node scripts/seed.ts",
+    "db:validate": "prisma validate --schema prisma/schema.prisma",
+    "db:format": "prisma format --schema prisma/schema.prisma",
+    "docker:up": "docker compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker compose -f docker/docker-compose.yml logs -f",
+    "docker:restart": "npm run docker:down && npm run docker:up",
+    "docker:prod": "docker compose -f docker/docker-compose.prod.yml up -d",
+    "docker:prod:down": "docker compose -f docker/docker-compose.prod.yml down",
+    "setup": "npm install && npm run docker:up && sleep 5 && npm run db:generate && npm run db:migrate:dev && npm run db:seed",
+    "dev:api": "npm --prefix apps/api run start:dev",
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev": "sh -c \"npm run docker:up && npm run dev:api & npm run dev:web\"",
+    "build:api": "npm --prefix apps/api run build",
+    "build:web": "npm --prefix apps/web run build",
+    "clean": "npm run docker:down && rm -rf node_modules package-lock.json",
+    "backup": "chmod +x scripts/migrate.sh && ./scripts/migrate.sh backup",
+    "migrate": "chmod +x scripts/migrate.sh && ./scripts/migrate.sh"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.0",
+    "bcrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.10.6",
+    "prisma": "^5.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "embr",
+    "infrastructure",
+    "database",
+    "migrations",
+    "docker",
+    "ci-cd"
+  ],
+  "author": "Embr Team",
+  "license": "MIT"
+}

@@ -1,0 +1,23 @@
+
+> embr-infrastructure@1.0.0 build:web
+> npm --prefix apps/web run build
+
+
+> embr-web@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.5
+
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/components/monetization/PayoutRequest.tsx:25:41
+Type error: Property 'getPayouts' does not exist on type '{ createRequest: (request: CreatePayoutRequest) => Promise<Payout>; getHistory: (page?: number, limit?: number) => Promise<{ payouts: Payout[]; pagination: any; }>; getById: (payoutId: string) => Promise<...>; getStats: () => Promise<...>; cancel: (payoutId: string) => Promise<...>; }'.
+
+[0m [90m 23 |[39m     [36mtry[39m {[0m
+[0m [90m 24 |[39m       setIsLoadingPayouts([36mtrue[39m)[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 25 |[39m       [36mconst[39m response [33m=[39m [36mawait[39m payoutsApi[33m.[39mgetPayouts({ limit[33m:[39m [35m5[39m })[33m;[39m[0m
+[0m [90m    |[39m                                         [31m[1m^[22m[39m[0m
+[0m [90m 26 |[39m       setRecentPayouts(response[33m.[39mpayouts)[33m;[39m[0m
+[0m [90m 27 |[39m     } [36mcatch[39m (err) {[0m
+[0m [90m 28 |[39m       console[33m.[39merror([32m'Error loading payouts:'[39m[33m,[39m err)[33m;[39m[0m
